@@ -1,0 +1,183 @@
+.product_overview {
+  padding: 0 0 50px; }
+  .product_overview .images {
+    margin-bottom: 30px; }
+    .product_overview .images .big_img {
+      position: relative;
+      overflow: hidden;
+      max-width: 100%;
+      height: auto; }
+      .product_overview .images .big_img img {
+        max-width: 100%;
+        height: auto;
+        -o-object-fit: cover;
+        object-fit: cover;
+        transform: scale(var(--zoom, 1));
+        transform-origin: var(--x) var(--y);
+        transition: transform 0.3s ease; }
+        .product_overview .images .big_img img:hover {
+          --zoom: 1.5
+        ; }
+    .product_overview .images .small_img {
+      padding-top: 15px; }
+      .product_overview .images .small_img p {
+        padding: 0 10px; }
+        .product_overview .images .small_img p img {
+          cursor: pointer;
+          opacity: 0.5;
+          max-width: 100%;
+          height: auto; }
+        .product_overview .images .small_img p .active {
+          opacity: 1; }
+      .product_overview .images .small_img .slick-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        border: none;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        line-height: 1;
+        z-index: 5;
+        transition: all 0.2s linear; }
+      .product_overview .images .small_img .slick-prev {
+        left: -15px; }
+        .product_overview .images .small_img .slick-prev.slick-disabled::before {
+          opacity: 0.25; }
+        .product_overview .images .small_img .slick-prev::before {
+          content: '\f31b';
+          font: normal normal normal 25px / 2 phosphor;
+          color: #a6a7a9;
+          opacity: 1;
+          display: block; }
+      .product_overview .images .small_img .slick-next {
+        right: -15px; }
+        .product_overview .images .small_img .slick-next.slick-disabled::before {
+          opacity: 0.25; }
+        .product_overview .images .small_img .slick-next::before {
+          content: '\f31c';
+          color: #a6a7a9;
+          font: normal normal normal 25px / 2 phosphor;
+          opacity: 1;
+          display: block; }
+  .product_overview .product-summary .product_title {
+    font-size: 24px;
+    line-height: 30px;
+    clear: none;
+    margin-top: 0;
+    padding: 0;
+    font-weight: 500; }
+  .product_overview .product-summary .product_details p {
+    font-size: 15px;
+    line-height: 35px;
+    color: #575c68; }
+  .product_overview .product-summary .product_priece {
+    margin: 55px 0 0;
+    padding: 0 0 40px;
+    border-bottom: 1px solid #e6e6e6; }
+    .product_overview .product-summary .product_priece p {
+      font-size: 30px;
+      font-family: 'iCiel Fester Semi-Condensed';
+      font-display: optional;
+      color: #ddba76; }
+      .product_overview .product-summary .product_priece p span {
+        font-size: 15px;
+        position: relative;
+        top: -11px; }
+  .product_overview .product-summary .cart {
+    padding-top: 50px; }
+    .product_overview .product-summary .cart .quantity-custom button {
+      width: 55px;
+      height: 55px;
+      border: 1px solid #e6e6e6;
+      background-color: transparent; }
+      .product_overview .product-summary .cart .quantity-custom button i {
+        vertical-align: middle;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 700; }
+    .product_overview .product-summary .cart .quantity-custom input {
+      width: 100%;
+      height: 55px;
+      max-width: 80px;
+      text-align: center;
+      border: 1px solid #e6e6e6;
+      border-right: none;
+      border-left: none;
+      background: #f7f7f7;
+      color: #9b8484; }
+    .product_overview .product-summary .cart .btn-addcart {
+      background-color: #444a59 !important;
+      font-family: 'iCiel Fester Semi-Condensed';
+      color: white;
+      border: none;
+      padding: 23px 0 17px;
+      margin: 30px 0px;
+      width: 100%;
+      max-width: 370px;
+      letter-spacing: 4.2px;
+      line-height: 1; }
+
+.commitment {
+  padding: 45px 0; }
+  .commitment ul li {
+    float: left;
+    padding: 15px; }
+    .commitment ul li img {
+      float: left;
+      margin-right: 15px;
+      max-width: 80px; }
+    .commitment ul li .title {
+      color: #000;
+      font-size: 16px; }
+    .commitment ul li .desc {
+      font-size: 15px;
+      color: #bbb;
+      margin: 0; }
+
+.content_detail {
+  padding: 65px 0 0;
+  position: relative;
+  border-top: 1px solid #e6e6e6; }
+  .content_detail .tabcontainer {
+    margin: 0 0 50px;
+    text-align: center; }
+    .content_detail .tabcontainer h3 {
+      font-family: 'iCiel Fester Semi-Condensed';
+      font-display: optional;
+      font-size: 18px;
+      color: #444a59;
+      cursor: pointer; }
+      .content_detail .tabcontainer h3:hover {
+        text-decoration: underline !important; }
+  .content_detail .tab_content_detail img {
+    width: 100%;
+    height: auto; }
+  .content_detail .tab_content_detail .row {
+    margin-bottom: 20px; }
+    .content_detail .tab_content_detail .row:nth-child(even) .box-content {
+      padding: 150px 0 0 80px; }
+    .content_detail .tab_content_detail .row .box-content {
+      padding: 150px 80px 0; }
+      .content_detail .tab_content_detail .row .box-content .widget-title {
+        margin-top: 0;
+        font-size: 20px;
+        font-family: 'iCiel Fester Semi-Condensed';
+        font-display: optional;
+        position: relative; }
+        .content_detail .tab_content_detail .row .box-content .widget-title::before {
+          position: absolute;
+          content: "";
+          height: 2px;
+          width: 30px;
+          background-color: #ddba76;
+          left: -50px;
+          top: 10px; }
+      .content_detail .tab_content_detail .row .box-content .text-widget ul {
+        padding: 0 0 0 15px; }
+        .content_detail .tab_content_detail .row .box-content .text-widget ul li {
+          list-style: disc;
+          font-size: 15px; }

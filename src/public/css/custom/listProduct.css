@@ -1,0 +1,96 @@
+.categories .banner_categories img {
+  max-width: 100%;
+  height: auto; }
+
+.categories .title-header {
+  margin-top: 20px;
+  margin-bottom: 10px; }
+  .categories .title-header span {
+    background: #fff;
+    position: relative;
+    padding-right: 15px;
+    font-weight: 400;
+    line-height: 1.4; }
+
+.product-filter {
+  margin-bottom: 50px; }
+  .product-filter .l-filter {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6; }
+    .product-filter .l-filter .woocommerce-result-count {
+      margin: 0;
+      border-right: 1px solid #e6e6e6;
+      padding: 25px 45px 25px 0;
+      font-size: 14px;
+      display: inline-block;
+      vertical-align: middle; }
+    .product-filter .l-filter .woocommerce-ordering {
+      margin: 0 0 0 auto !important;
+      font-size: 14px;
+      display: inline-block;
+      vertical-align: middle; }
+      .product-filter .l-filter .woocommerce-ordering .orderby {
+        color: #bbb;
+        border: none; }
+
+.list-product .card {
+  border-radius: 0;
+  border: none;
+  box-shadow: none; }
+  .list-product .card .card-img-top {
+    border-radius: 0px; }
+  .list-product .card .card-body {
+    text-align: center; }
+    .list-product .card .card-body .card-title {
+      font-size: 18px;
+      color: #ddba76;
+      font-family: "iCiel Fester Semi-Condensed";
+      cursor: default; }
+    .list-product .card .card-body .card-text {
+      min-height: 56px;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      line-height: 1.1; }
+      .list-product .card .card-body .card-text a {
+        transition: all 0.1s linear;
+        font-size: 14px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden; }
+      .list-product .card .card-body .card-text:hover a {
+        color: #ddba76; }
+
+.pagination {
+  margin: 0 auto 60px auto;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid #e6e6e6;
+  padding: 10px 0 20px; }
+  .pagination ul {
+    margin: 0 auto;
+    display: table; }
+    .pagination ul li {
+      display: inline-block; }
+      .pagination ul li a {
+        margin: 0 15px;
+        position: relative;
+        font-size: 16px;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #afafaf;
+        font-family: 'iCiel Fester Semi-Condensed';
+        font-display: optional;
+        width: 45px;
+        height: 45px;
+        display: inline-block;
+        line-height: 50px; }
+      .pagination ul li.active a {
+        background-color: #f7f7f7;
+        border-radius: 50%;
+        color: #000; }

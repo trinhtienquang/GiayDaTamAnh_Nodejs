@@ -1,0 +1,73 @@
+.content-page .overview .widget-title h1 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 36px;
+  line-height: 48px;
+  font-family: 'iCiel Fester Semi-Condensed';
+  font-display: optional;
+  position: relative;
+  color: #444a59; }
+  .content-page .overview .widget-title h1 span {
+    background: #fff;
+    padding: 0 15px 0 0; }
+  .content-page .overview .widget-title h1::before {
+    content: "";
+    position: absolute;
+    bottom: 18px;
+    width: 100%;
+    height: 15px;
+    z-index: -1;
+    background: #fee192; }
+
+.content-page .overview .text-widget ul li {
+  position: relative;
+  padding-left: 40px;
+  line-height: 30px;
+  font-size: 15px;
+  color: #666; }
+  .content-page .overview .text-widget ul li::before {
+    position: absolute;
+    content: url(https://tamanh.net/wp-content/themes/banhang/images/icon_check.png);
+    left: 0;
+    top: 5px; }
+
+.content-page .vision_mission {
+  padding: 100px 0;
+  position: relative; }
+  .content-page .vision_mission .vision_mission_title {
+    color: #444a59;
+    font-size: 30px;
+    font-family: 'iCiel Fester Semi-Condensed';
+    font-display: optional;
+    text-align: center;
+    padding: 55px 0 50px;
+    position: relative; }
+    .content-page .vision_mission .vision_mission_title::before {
+      content: url(https://tamanh.net/wp-content/themes/banhang/images/number_one.png);
+      position: absolute;
+      top: -35px;
+      left: 0;
+      right: 0;
+      text-align: center; }
+  .content-page .vision_mission .text-content {
+    margin: 100px 0;
+    position: relative; }
+    .content-page .vision_mission .text-content::before {
+      position: absolute;
+      content: "";
+      width: 30px;
+      height: 2px;
+      top: 13px;
+      left: -50px;
+      background-color: #ddba76;
+      border: 1px solid #ddba76; }
+    .content-page .vision_mission .text-content .widget-title {
+      color: #444a59;
+      font-size: 24px;
+      font-family: 'iCiel Fester Semi-Condensed';
+      font-display: optional;
+      line-height: 30px; }
+    .content-page .vision_mission .text-content .text-widget p {
+      font-size: 15px;
+      line-height: 30px;
+      color: #9b9b9b; }

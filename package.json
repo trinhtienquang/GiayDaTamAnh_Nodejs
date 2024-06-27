@@ -1,0 +1,21 @@
+{
+  "name": "giayda_nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "beautiful": "prettier --single-quote --trailing-comma all --write 'src/**/*.{js,json,scss}'",
+    "start": "nodemon --inspect src/index.js",
+    "watch": "node-sass --watch src/resources/scss -o src/public/css/custom",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "mysql": "^2.18.1",
+    "node-sass": "^9.0.0"
+  }
+}

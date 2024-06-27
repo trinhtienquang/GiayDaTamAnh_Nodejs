@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'VNF-Futura';
+    src: url('VNF-Futura.woff2') format('woff2'),
+        url('VNF-Futura.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
