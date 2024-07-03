@@ -151,19 +151,55 @@ ol {
         opacity: 0;
         top: 100%;
         transition: all .3s; }
-        .header .midle_header .container .list_product .list_product_menu ul {
+        .header .midle_header .container .list_product .list_product_menu ul.menu {
           position: absolute;
           background: #fff;
           width: 270px; }
-          .header .midle_header .container .list_product .list_product_menu ul li {
+          .header .midle_header .container .list_product .list_product_menu ul.menu li.menu_item {
             position: relative;
             border-bottom: 1px solid #e6e6e6;
-            padding: 20px 0; }
-            .header .midle_header .container .list_product .list_product_menu ul li a {
+            padding: 20px 0 10px 0; }
+            .header .midle_header .container .list_product .list_product_menu ul.menu li.menu_item a {
               position: relative;
               padding: 0 20px 0 35px;
               display: block;
-              font-family: 'VNF-Futura'; }
+              font-family: 'VNF-Futura';
+              transition: 0.1s color ease; }
+              .header .midle_header .container .list_product .list_product_menu ul.menu li.menu_item a:hover {
+                color: #ddba76;
+                text-decoration: none; }
+            .header .midle_header .container .list_product .list_product_menu ul.menu li.menu_item ul.sub_menu {
+              padding: 10px 10px 0;
+              max-height: 0px;
+              visibility: hidden;
+              opacity: 0;
+              top: 100%;
+              transition: all 0.3s;
+              transform: translateY(-10px); }
+            .header .midle_header .container .list_product .list_product_menu ul.menu li.menu_item:hover ul.sub_menu {
+              visibility: visible;
+              opacity: 1;
+              top: 80%;
+              transform: translateY(0);
+              max-height: 500px; }
+            .header .midle_header .container .list_product .list_product_menu ul.menu li.menu_item::before {
+              position: absolute;
+              content: "";
+              height: 3px;
+              width: 3px;
+              background-color: #ddba76;
+              border-radius: 50%;
+              left: 20px;
+              top: 32px; }
+            .header .midle_header .container .list_product .list_product_menu ul.menu li.menu_item::after {
+              content: "\f067" !important;
+              font: normal bold normal 14px / 1 FontAwesome;
+              right: 30px;
+              font-size: 11px;
+              position: absolute;
+              top: 30px;
+              color: #ddba76;
+              cursor: pointer; }
       .header .midle_header .container .list_product:hover .list_product_menu {
         top: 80%;
         visibility: visible;
@@ -189,7 +225,8 @@ ol {
           font-family: 'iCiel Fester Semi-Condensed'; }
     .header .midle_header .container .cart {
       float: right;
-      padding: 10px 0 0; }
+      padding: 10px 0 0;
+      cursor: pointer; }
       .header .midle_header .container .cart .count {
         position: relative;
         width: 20px;

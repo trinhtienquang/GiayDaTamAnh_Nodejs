@@ -32,13 +32,3 @@ app.get('/chi-tiet-san-pham', function(req,res){
 
 app.listen(PORT,()=>console.log('Server run on http://localhost:'+PORT));
 
-
-// //Delete chi tiet san pham
-// app.delete('/san-pham/:id',(req,res)=>{
-//   mysqlConnection.query('DELETE FROM tbl_sanpham WHERE sanpham_id = ?',[req.params.id],(err, rows, fields)=>{
-//     if(!err)
-//       res.send('Deleted successfully');
-//     else
-//     console.log(err);
-//   })
-// });

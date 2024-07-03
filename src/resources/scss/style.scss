@@ -1,5 +1,4 @@
 // @import url('https://fonts.cdnfonts.com/css/iciel-fester-semi-condensed');
-
 @keyframes an_three {
   0% {
     -webkit-transform: scale(1) translateY(0);
@@ -65,15 +64,6 @@
   font-style: normal;
   font-display: swap;
 }
-
-// @font-face {
-//   font-family: 'iCiel Fester Semi-Condensed';
-//   src: url('/fonts/iCel/iCielFesterSemiCondensed-Bold.woff2') format('woff2'),
-//     url('/fonts/iCel/iCielFesterSemiCondensed-Bold.woff') format('woff');
-//   font-weight: bold;
-//   font-style: normal;
-//   font-display: swap;
-// }
 
 
 $greyish: #a8a8a8;
@@ -219,28 +209,78 @@ ol {
           position: absolute;
           z-index: 2;
           background: #fff;
+          // display: none;
           width: 270px;
           visibility: hidden;
           opacity: 0;
-          // display: none;
           top: 100%;
           transition: all .3s;
 
-          ul {
+          ul.menu {
             position: absolute;
             background: #fff;
             width: 270px;
 
-            li {
+            li.menu_item {
               position: relative;
               border-bottom: 1px solid #e6e6e6;
-              padding: 20px 0;
+              padding: 20px 0 10px 0;
+
 
               a {
                 position: relative;
                 padding: 0 20px 0 35px;
                 display: block;
                 font-family: 'VNF-Futura';
+                transition: 0.1s color ease;
+
+                &:hover {
+                  color: #ddba76;
+                  text-decoration: none;
+                }
+              }
+
+              ul.sub_menu {
+                // position: absolute;
+                padding: 10px 10px 0;
+                max-height: 0px;
+                visibility: hidden;
+                opacity: 0;
+                top: 100%;
+                transition: all 0.3s;
+                transform: translateY(-10px);
+              }
+
+              &:hover {
+                ul.sub_menu {
+                  visibility: visible;
+                  opacity: 1;
+                  top: 80%;
+                  transform: translateY(0);
+                  max-height: 500px;
+                }
+              }
+
+              &::before {
+                position: absolute;
+                content: "";
+                height: 3px;
+                width: 3px;
+                background-color: #ddba76;
+                border-radius: 50%;
+                left: 20px;
+                top: 32px;
+              }
+
+              &::after {
+                content: "\f067" !important;
+                font: normal bold normal 14px / 1 FontAwesome;
+                right: 30px;
+                font-size: 11px;
+                position: absolute;
+                top: 30px;
+                color: #ddba76;
+                cursor: pointer;
               }
             }
           }
@@ -286,6 +326,7 @@ ol {
       .cart {
         float: right;
         padding: 10px 0 0;
+        cursor: pointer;
 
         .count {
           position: relative;
