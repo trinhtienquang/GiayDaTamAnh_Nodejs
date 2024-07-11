@@ -28,7 +28,7 @@
 
   <!-- /theme JS files -->
 
-  <link rel="stylesheet" href="css/custom/style.css">
+  <link rel="stylesheet" href="/css/custom/style.css">
   <link rel="stylesheet" href="/css/custom/introduce.css">
   <link rel="stylesheet" href="/css/custom/listProduct.css">
   <link rel="stylesheet" href="/css/custom/productDetail.css">
@@ -40,9 +40,7 @@
     <div class="top_header">
       <div class="container d-flex justify-content-between">
         <div class="logo_header">
-          <a href="/" class="logo_h logo_h__img"><img
-              src="https://tamanh.net/wp-content/uploads/2018/02/logo-tamanh-02-1.png" alt="Thế Giới Đồ Da Tâm Anh"
-              title="Đồ Da Tâm Anh"></a>
+          <a href="/" class="logo_h logo_h__img"><img src="https://tamanh.net/wp-content/uploads/2018/02/logo-tamanh-02-1.png" alt="Thế Giới Đồ Da Tâm Anh" title="Đồ Da Tâm Anh"></a>
         </div>
         <div class="text_hotline">
           <i class="icon-phone2"></i>
@@ -63,62 +61,16 @@
               </div>
               <nav class="list_product_menu">
                 <ul class="menu">
-                  <li class="menu_item"><a href="../html/listProduct.html">Giày da nam</a>
+                  <% menuData.forEach(danhmuc => { %>
+                  <li class="menu_item">
+                    <a href="/<%=slugify(danhmuc.danhmuc_ten)%>"><%= danhmuc.danhmuc_ten %></a>
                     <ul class="sub_menu">
-                      <li class="sub_menu_item"><a href="">Giày lười nam</a></li>
-                      <li class="sub_menu_item"><a href="">Giày tây nam</a></li>
-                      <li class="sub_menu_item"><a href="">Giày tăng chiều cao</a></li>
+                      <% danhmuc.loaisanphams.forEach(loaisanpham => { %>
+                      <li class="sub_menu_item"><a href="/<%=slugify(danhmuc.danhmuc_ten)%>/<%= slugify(loaisanpham.loaisanpham_ten)%>"><%= loaisanpham.loaisanpham_ten %></a></li>
+                      <% }); %>
                     </ul>
                   </li>
-                  <li class="menu_item"><a href="../html/listProduct.html">Thắt lưng nam</a>
-                    <ul class="sub_menu">
-                      <li class="sub_menu_item"><a href="">Giày lười nam</a></li>
-                      <li class="sub_menu_item"><a href="">Giày tây nam</a></li>
-                      <li class="sub_menu_item"><a href="">Giày tăng chiều cao</a></li>
-                    </ul>
-                  </li>
-                  <li class="menu_item"><a href="../html/listProduct.html">Ví da nam</a>
-                    <ul class="sub_menu">
-                      <!-- <li class="sub_menu_item"><a href="">Giày lười nam</a></li>
-                      <li class="sub_menu_item"><a href="">Giày tây nam</a></li>
-                      <li class="sub_menu_item"><a href="">Giày tăng chiều cao</a></li> -->
-                    </ul>
-                  </li>
-                  <li class="menu_item"><a href="../html/listProduct.html">Túi xách nam</a>
-                    <ul class="sub_menu">
-                      <!-- <li class="sub_menu_item"><a href="">Giày lười nam</a></li>
-                      <li class="sub_menu_item"><a href="">Giày tây nam</a></li>
-                      <li class="sub_menu_item"><a href="">Giày tăng chiều cao</a></li> -->
-                    </ul>
-                  </li>
-                  <li class="menu_item"><a href="../html/listProduct.html">Găng tay da</a>
-                    <ul class="sub_menu">
-                      <!-- <li class="sub_menu_item"><a href="">Giày lười nam</a></li>
-                      <li class="sub_menu_item"><a href="">Giày tây nam</a></li>
-                      <li class="sub_menu_item"><a href="">Giày tăng chiều cao</a></li> -->
-                    </ul>
-                  </li>
-                  <li class="menu_item"><a href="../html/listProduct.html">Dây da đồng hồ</a>
-                    <ul class="sub_menu">
-                      <!-- <li class="sub_menu_item"><a href="">Giày lười nam</a></li>
-                      <li class="sub_menu_item"><a href="">Giày tây nam</a></li>
-                      <li class="sub_menu_item"><a href="">Giày tăng chiều cao</a></li> -->
-                    </ul>
-                  </li>
-                  <li class="menu_item"><a href="../html/listProduct.html">Phụ kiện đồ da</a>
-                    <ul class="sub_menu">
-                      <!-- <li class="sub_menu_item"><a href="">Giày lười nam</a></li>
-                      <li class="sub_menu_item"><a href="">Giày tây nam</a></li>
-                      <li class="sub_menu_item"><a href="">Giày tăng chiều cao</a></li> -->
-                    </ul>
-                  </li>
-                  <li class="menu_item"><a href="../html/listProduct.html">Nhượng quyền thương hiệu</a>
-                    <ul class="sub_menu">
-                      <!-- <li class="sub_menu_item"><a href="">Giày lười nam</a></li>
-                      <li class="sub_menu_item"><a href="">Giày tây nam</a></li>
-                      <li class="sub_menu_item"><a href="">Giày tăng chiều cao</a></li> -->
-                    </ul>
-                  </li>
+                  <% }); %>
                 </ul>
               </nav>
             </div>
@@ -126,8 +78,8 @@
           <div class="col-xs-12 col-sm-9">
             <div class="menu_desktop">
               <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="../html/introduce.html">Giới thiệu</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/gioi-thieu">Giới thiệu</a></li>
                 <li><a href="">Liên hệ</a></li>
                 <li><a href="">Blog thời trang</a></li>
                 <li><a href="">Tin tức</a></li>

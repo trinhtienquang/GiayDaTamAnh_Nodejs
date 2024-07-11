@@ -7,7 +7,7 @@ var mysqlConnection = mysql.createConnection({
   host:'localhost',
   user:'root',
   password:'',
-  database:'web_banhang'
+  database:'giayda_tamanh'
 });
 
 // connect to database
