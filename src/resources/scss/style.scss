@@ -135,6 +135,14 @@ ol {
           margin: 0 10px;
         }
       }
+
+      a {
+        transition: color 0.1s;
+
+        &:hover {
+          color: #ddba76;
+        }
+      }
     }
   }
 }

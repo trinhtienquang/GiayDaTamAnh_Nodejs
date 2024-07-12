@@ -3,8 +3,11 @@
 <section class="direct">
   <div class="container">
     <ol class="breakcumb">
-      <li><a href="/"><span>Trang chủ</span></a></li>
-      <li><a href=""><span>Giày da nam</span></a></li>
+      <% breadcrumb.forEach(function(item, index) { %>
+      <li>
+        <a href="<%= item.url %>"><span><%= item.name %></span></a>
+      </li>
+      <% }) %>
     </ol>
   </div>
 </section>
@@ -12,10 +15,10 @@
 <section class="categories">
   <div class="container">
     <div class="banner_categories">
-      <img src="https://tamanh.net/wp-content/uploads/2023/08/banner-giay-da-cao-cap-tam-anh.jpg" alt="">
+      <img src="/uploads/<%=banner_img%>" alt="">
     </div>
     <h2 class="title-header">
-      <span>Giày da nam</span>
+      <span><%=title%></span>
     </h2>
   </div>
 </section>
@@ -23,15 +26,13 @@
 <section class="product-filter">
   <div class="container">
     <div class="l-filter">
-      <p class="woocommerce-result-count">Showing 1-24 of 65 results</p>
+      <p class="woocommerce-result-count">Showing 1-<%= productsOnPage %> of <%= totalProducts %> results</p>
       <form class="woocommerce-ordering" method="get">
-        <select name="orderby" class="orderby">
-          <option value="menu_order" selected="selected">Thứ tự mặc định</option>
-          <option value="popularity">Thứ tự theo mức phổ biến</option>
-          <option value="rating">Thứ tự theo điểm đính giá</option>
-          <option value="date">mới nhất</option>
-          <option value="price">Thứ tự theo giá: thấp đến cao</option>
-          <option value="price-desc">Thứ tự theo giá: cao xuống thấp</option>
+        <select name="orderby" class="orderby" onchange="this.form.submit()">
+          <option value="menu_order" <%= orderby === 'menu_order' ? 'selected' : '' %>>Thứ tự mặc định</option>
+          <option value="date" <%= orderby === 'date' ? 'selected' : '' %>>mới nhất</option>
+          <option value="price" <%= orderby === 'price' ? 'selected' : '' %>>Thứ tự theo giá: thấp đến cao</option>
+          <option value="price-desc" <%= orderby === 'price-desc' ? 'selected' : '' %>>Thứ tự theo giá: cao xuống thấp</option>
         </select>
       </form>
     </div>
@@ -56,58 +57,6 @@
         </div>
       </div>
       <%})%>
-      <!-- <div class="col">
-        <div class="card h-100">
-          <a href="">
-            <img src="https://tamanh.net/wp-content/uploads/2020/06/ava-mau-that-lung-nam-D390-202012-2.jpg" class="card-img-top" alt="...">
-          </a>
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <div class="card-text">
-              <a href="">Giày da nam kiểu dáng Apron Toe GNTA5501-D</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <a href="../html/productDetail.html">
-            <img src="https://tamanh.net/wp-content/uploads/2019/01/ava-vi-tam-anh-thiet-ke-dang-ngang-co-dien-VTANF2222-1-D-1.jpg" class="card-img-top" alt="...">
-          </a>
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <div class="card-text">
-              <a href="">Giày da nam kiểu dáng Apron Toe GNTA5501-D</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <a href="">
-            <img src="https://tamanh.net/wp-content/uploads/2015/09/ava-giay-luoi-nam-quai-ngang-GNTA2151-D-1.jpg" class="card-img-top" alt="...">
-          </a>
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <div class="card-text">
-              <a href="">Giày da nam kiểu dáng Apron Toe GNTA5501-D</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <a href="">
-            <img src="https://tamanh.net/wp-content/uploads/2015/09/ava-giay-luoi-nam-quai-ngang-GNTA2151-D-1.jpg" class="card-img-top" alt="...">
-          </a>
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <div class="card-text">
-              <a href="">Giày da nam kiểu dáng Apron Toe GNTA5501-D</a>
-            </div>
-          </div>
-        </div>
-      </div> -->
     </div>
   </div>
 </section>
@@ -115,9 +64,11 @@
 <div class="container">
   <div class="pagination">
     <ul>
-      <li class="active"><a href="#">1</a></li>
-      <li class="" aria-current="page"><a href="#">2</a></li>
-      <li class=""><a href="#">3</a></li>
+      <% for(let i = 1; i <= totalPages; i++) { %>
+      <li class="<%= currentPage === i ? 'active' : '' %>">
+        <a href="?page=<%= i %>"><%= i %></a>
+      </li>
+      <% } %>
     </ul>
   </div>
 </div>

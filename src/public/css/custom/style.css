@@ -96,6 +96,10 @@ ol {
         content: "\f105" !important;
         color: #ddba76;
         margin: 0 10px; }
+      .direct .breakcumb li a {
+        transition: color 0.1s; }
+        .direct .breakcumb li a:hover {
+          color: #ddba76; }
 
 .header .top_header .text_hotline {
   margin: 35px 0px; }
