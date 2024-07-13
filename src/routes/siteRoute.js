@@ -7,9 +7,11 @@ router.get('/', siteController.index)
 
 router.get('/gioi-thieu', siteController.introduce)
 
-router.get('/:danhmucTen', siteController.renderDanhMuc);
+router.get('/danh-muc/:danhmucTen', siteController.renderDanhMuc);
 
-router.get('/:danhmucTen/:loaisanphamTen', siteController.renderLoaiDanhMuc);
+router.get('/danh-muc/:danhmucTen/:loaisanphamTen', siteController.renderLoaiDanhMuc);
+
+router.get('/chi-tiet-san-pham/:slug', siteController.renderProductDetail);
 
 
 // router.get('/chi-tiet-san-pham', siteController.productDetail)

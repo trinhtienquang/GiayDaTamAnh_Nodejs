@@ -63,10 +63,10 @@
                 <ul class="menu">
                   <% menuData.forEach(danhmuc => { %>
                   <li class="menu_item">
-                    <a href="/<%=slugify(danhmuc.danhmuc_ten)%>"><%= danhmuc.danhmuc_ten %></a>
+                    <a href="/danh-muc/<%=slugify(danhmuc.danhmuc_ten)%>"><%= danhmuc.danhmuc_ten %></a>
                     <ul class="sub_menu">
                       <% danhmuc.loaisanphams.forEach(loaisanpham => { %>
-                      <li class="sub_menu_item"><a href="/<%=slugify(danhmuc.danhmuc_ten)%>/<%= slugify(loaisanpham.loaisanpham_ten)%>"><%= loaisanpham.loaisanpham_ten %></a></li>
+                      <li class="sub_menu_item"><a href="/danh-muc/<%=slugify(danhmuc.danhmuc_ten)%>/<%= slugify(loaisanpham.loaisanpham_ten)%>"><%= loaisanpham.loaisanpham_ten %></a></li>
                       <% }); %>
                     </ul>
                   </li>

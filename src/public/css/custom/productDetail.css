@@ -88,27 +88,52 @@
         top: -11px; }
   .product_overview .product-summary .cart {
     padding-top: 50px; }
-    .product_overview .product-summary .cart .quantity-custom button {
+    .product_overview .product-summary .cart .quantity-custom #buy-amount button {
       width: 55px;
       height: 55px;
       border: 1px solid #e6e6e6;
       background-color: transparent; }
-      .product_overview .product-summary .cart .quantity-custom button i {
+      .product_overview .product-summary .cart .quantity-custom #buy-amount button i {
         vertical-align: middle;
         display: flex;
         justify-content: center;
         align-items: center;
         font-weight: 700; }
-    .product_overview .product-summary .cart .quantity-custom input {
+    .product_overview .product-summary .cart .quantity-custom #buy-amount input {
       width: 100%;
       height: 55px;
-      max-width: 80px;
+      max-width: 55px;
       text-align: center;
       border: 1px solid #e6e6e6;
       border-right: none;
       border-left: none;
       background: #f7f7f7;
       color: #9b8484; }
+    .product_overview .product-summary .cart .quantity-custom .list-sizes {
+      display: block;
+      clear: both;
+      padding: 20px 0 0; }
+      .product_overview .product-summary .cart .quantity-custom .list-sizes ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0; }
+        .product_overview .product-summary .cart .quantity-custom .list-sizes ul li {
+          float: left;
+          padding: 0 2px;
+          width: 12.6666%;
+          cursor: pointer;
+          color: #a8a8a8;
+          font-size: 14px;
+          text-align: center; }
+          .product_overview .product-summary .cart .quantity-custom .list-sizes ul li:first-child {
+            margin: 0; }
+          .product_overview .product-summary .cart .quantity-custom .list-sizes ul li span {
+            padding: 13px 16px;
+            border: 1px solid #e6e6e6;
+            display: block; }
+        .product_overview .product-summary .cart .quantity-custom .list-sizes ul li.active span {
+          background: #ddba76;
+          color: #fff; }
     .product_overview .product-summary .cart .btn-addcart {
       background-color: #444a59 !important;
       font-family: 'iCiel Fester Semi-Condensed';

@@ -71,3 +71,15 @@ exports.countProductsByLoaiSanPham = (loaisanpham_id, callback) => {
     callback(null, res[0].total);
   });
 };
+
+exports.getProductBySlug = (productName, results) => {
+  const sqlQuery = 'SELECT * FROM tbl_sanpham WHERE REPLACE(lower(sanpham_ten), "đ", "d") = ? ';
+  sql.query(sqlQuery, [productName], function(err, res) {
+
+    if (err) {
+      return results(err, null);
+    }
+    results(null, res[0]);
+  });
+};
+

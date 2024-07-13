@@ -1,5 +1,6 @@
 const Menu = require('../models/menuModel') 
 const slugify = require('../../utils/slugify');
+
 exports.renderMenu = (req, res, next) => {
   Menu.getDanhMucs((err, danhmucs) => {
     if (err) {

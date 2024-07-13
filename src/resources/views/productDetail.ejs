@@ -1,256 +1,203 @@
 <%- include('partials/header') %>
 
-  <section class="direct">
-    <div class="container">
-      <ol class="breakcumb">
-        <li><a href="./index.html"><span>Trang chủ</span></a></li>
-        <li><a href="./Introduce.html"><span>Giày da nam</span></a></li>
-      </ol>
-    </div>
-  </section>
+<section class="direct">
+  <div class="container">
+    <ol class="breakcumb">
+      <% breadcrumb.forEach(function(item, index) { %>
+      <li>
+        <a href="<%= item.url %>"><span><%= item.name %></span></a>
+      </li>
+      <% }) %>
+    </ol>
+  </div>
+</section>
 
-  <section class="product_overview">
-    <div class="container">
-      <div class="row justify-content-between">
-        <div class="col-xs-12 col-md-6">
-          <div class="images">
-            <div class="big_img">
-              <img src="https://tamanh.net/wp-content/uploads/2016/12/ava-giay-luoi-da-bo-cao-cap-GNTA5501-D-2.jpg"
-                alt="">
-            </div>
-            <div class="small_img">
-              <div class="slider_img">
-                <p>
-                  <img
-                    src="https://tamanh.net/wp-content/uploads/2016/12/giay-da-nam-kieu-dang-apron-toe-GNTA5501-D-2.jpg"
-                    alt="">
-                </p>
-                <p>
-                  <img
-                    src="https://tamanh.net/wp-content/uploads/2016/12/giay-da-nam-kieu-dang-apron-toe-GNTA5501-D-4.jpg"
-                    alt="">
-                </p>
-                <p>
-                  <img
-                    src="https://tamanh.net/wp-content/uploads/2016/12/giay-da-nam-kieu-dang-apron-toe-GNTA5501-D-3.jpg"
-                    alt="">
-                </p>
-                <p>
-                  <img
-                    src="https://tamanh.net/wp-content/uploads/2016/12/giay-da-nam-kieu-dang-apron-toe-GNTA5501-D-1.jpg"
-                    alt="">
-                </p>
-                <p>
-                  <img src="https://tamanh.net/wp-content/uploads/2016/12/ava-giay-luoi-da-bo-cao-cap-GNTA5501-D-2.jpg"
-                    alt="">
-                </p>
-              </div>
+<section class="product_overview">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-xs-12 col-md-6">
+        <div class="images">
+          <div class="big_img">
+            <img src="/uploads/<%=product.sanpham_anh%>" alt="" style="max-height: 575px; width: 100%;">
+          </div>
+          <div class="small_img">
+            <div class="slider_img">
+              <% images.forEach(image => { %>
+              <p>
+                <img src="/uploads/<%=image.sanpham_anh%>" alt="" class="img-fluid" style="max-height: 124px; width: 100%;">
+              </p>
+              <%})%>
             </div>
           </div>
         </div>
-        <div class="col-xs-12 col-md-5 col-md-offset-1">
-          <div class="product-summary">
-            <h1 class="product_title">Giày da nam kiểu dáng Apron Toe GNTA5501-D</h1>
-            <div class="product_details">
-              <p>• Chất liệu da bò thật 100%<br>
-                • Thiết kế buộc dây thời trang, sang trọng<br>
-                • Sản xuất tại Đồ da Tâm Anh<br>
-                • Bảo hành 12 tháng</p>
-            </div>
-            <div class="product_priece">
-              <p>500,000 <span>₫</span></p>
-            </div>
-            <div class="cart">
-              <div class="quantity-custom  d-flex align-items-center">
-                <div id="buy-amount" class="d-flex">
-                  <button class="btn-minus" onclick="minusHandleClick()">
-                    <i class="ph-minus"></i>
-                  </button>
-                  <input type="text" name="soluong" id="soluong" value="1">
-                  <button class="btn-plus" onclick="plusHandleClick()">
-                    <i class="ph-plus"></i>
-                  </button>
-                </div>
+      </div>
+      <div class="col-xs-12 col-md-5 col-md-offset-1">
+        <div class="product-summary">
+          <h1 class="product_title"><%=product.sanpham_ten%> <%=product.sanpham_ma%></h1>
+          <div class="product_details">
+            <%-product.sanpham_gioithieu%>
+          </div>
+          <div class="product_priece">
+            <p><%-Number(product.sanpham_gia).toLocaleString('vi-VN')%> <span>₫</span></p>
+          </div>
+          <div class="cart">
+            <div class="quantity-custom ">
+              <div id="buy-amount" class="d-flex">
+                <button class="btn-minus" onclick="minusHandleClick()">
+                  <i class="ph-minus"></i>
+                </button>
+                <input type="text" name="soluong" id="soluong" value="1">
+                <button class="btn-plus" onclick="plusHandleClick()">
+                  <i class="ph-plus"></i>
+                </button>
               </div>
-              <button class="btn-addcart" data-product-quantity="document.getElementById('soluong').value">
-                Thanh toán ngay
-              </button>
+              <div class="list-sizes">
+                <ul id="choose-size">
+                  <% sizes.forEach(size => {%>
+                  <li>
+                    <span><%=size.sanpham_size%></span>
+                  </li>
+                  <%})%>
+                </ul>
+              </div>
             </div>
+            <button class="btn-addcart" data-product-quantity="document.getElementById('soluong').value">
+              Thanh toán ngay
+            </button>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <%- include('partials/commitment') %>
+<%- include('partials/commitment') %>
 
-    <section class="content_detail">
-      <div class="container">
-        <div class="tabcontainer">
-          <h3>Chi tiết sản phẩm</h3>
+<section class="content_detail">
+  <div class="container">
+    <div class="tabcontainer">
+      <h3>Chi tiết sản phẩm</h3>
+    </div>
+    <div class="tab_content_detail">
+      <div class="row">
+        <div class="col-md-7 col-xs-12">
+          <div class="box-content">
+            <div class="widget-title">Đặc điểm chung sản phẩm</div>
+            <div class="text-widget">
+              <%-product.sanpham_dacdiemchung%>
+            </div>
+          </div>
         </div>
-        <div class="tab_content_detail">
-          <div class="row">
-            <div class="col-md-7 col-xs-12">
-              <div class="box-content">
-                <div class="widget-title">Đặc điểm chung sản phẩm giày GNTA5502-D</div>
-                <div class="text-widget">
-                  <ul>
-                    <li style="font-weight: 400"><span style="font-weight: 400">Chất liệu da bò cao cấp, da thật
-                        100%</span></li>
-                    <li style="font-weight: 400"><span style="font-weight: 400">Form giày ôm chân, thiết kế trẻ trung
-                        hiện
-                        đại</span></li>
-                    <li style="font-weight: 400"><span style="font-weight: 400">Đường chỉ may tỉ mỉ, tinh tế</span></li>
-                    <li style="font-weight: 400"><span style="font-weight: 400">Đế chống trơn trượt, thời trang</span>
-                    </li>
-                    <li style="font-weight: 400"><span style="font-weight: 400">Màu: Đen</span></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-5 col-xs-12">
-              <img src="https://tamanh.net/wp-content/uploads/2016/12/giay-da-nam-kieu-dang-apron-toe-GNTA5501-D-2.jpg"
-                alt="">
-            </div>
-          </div>
+        <div class="col-md-5 col-xs-12">
+          <img src="/uploads/<%=images[0].sanpham_anh%>" alt="">
+        </div>
+      </div>
 
-          <div class="row">
-            <div class="col-md-5 col-xs-12">
-              <img src="https://tamanh.net/wp-content/uploads/2016/12/giay-da-nam-kieu-dang-apron-toe-GNTA5501-D-2.jpg"
-                alt="">
-            </div>
-            <div class="col-md-7 col-xs-12">
-              <div class="box-content">
-                <div class="widget-title">Thiết kế chi tiết</div>
-                <div class="text-widget">
-                  <ul>
-                    <li style="font-weight: 400"><span style="font-weight: 400">Trẻ trung, nam tính và hiện đại là điều
-                        bạn có thể dễ dàng nhận thấy trong thiết kế này.</span></li>
-                    <li style="font-weight: 400"><span style="font-weight: 400">Thiết kế giày Derby cơ bản với phần mũi
-                        nhọn và da đen bóng</span></li>
-                    <li style="font-weight: 400"><span style="font-weight: 400">Chất liệu da cao cấp, mềm mại cùng thiết
-                        kế đế giày bằng chất liệu cao su ép gỗ / cao su chống trơn trượt mang lại cảm giác thoải mái khi
-                        sử dụng.</span></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-7 col-xs-12">
-              <div class="box-content">
-                <div class="widget-title">Mô tả sản phẩm</div>
-                <div class="text-widget">
-                  <ul>
-                    <li style="font-weight: 400"><span style="font-weight: 400">Chất liệu da được tuyển chọn kỹ lưỡng:
-                        siêu bền, siêu mềm</span></li>
-                    <li style="font-weight: 400"><span style="font-weight: 400">Đường chỉ may tinh tế, hiện đại</span>
-                    </li>
-                    <li style="font-weight: 400"><span style="font-weight: 400">Đế giày được thiết kế chắc chắn với lớp
-                        cao su hiện đại mang lại cảm giác thoải mái khi sử dụng.</span></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-5 col-xs-12">
-              <img src="https://tamanh.net/wp-content/uploads/2016/12/giay-da-nam-kieu-dang-apron-toe-GNTA5501-D-2.jpg"
-                alt="">
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-5 col-xs-12">
-              <img src="https://tamanh.net/wp-content/uploads/2016/12/giay-da-nam-kieu-dang-apron-toe-GNTA5501-D-2.jpg"
-                alt="">
-            </div>
-            <div class="col-md-7 col-xs-12">
-              <div class="box-content">
-                <div class="widget-title">Chính sách sản phẩm</div>
-                <div class="text-widget">
-                  <ul>
-                    <li style="font-weight: 400"><span style="font-weight: 400">Sản xuất và độc quyền tại Đồ da Tâm
-                        Anh</span></li>
-                    <li style="font-weight: 400"><span style="font-weight: 400">Bảo hành 12 tháng</span></li>
-                    <li style="font-weight: 400"><span style="font-weight: 400">Giao hàng toàn quốc, thanh toán sau khi
-                        nhận hàng</span></li>
-                    <li style="font-weight: 400"><span style="font-weight: 400">Đổi trả hàng trong vòng 15 ngày</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+      <div class="row">
+        <div class="col-md-5 col-xs-12">
+          <img src="/uploads/<%=images[1].sanpham_anh%>" alt="">
+        </div>
+        <div class="col-md-7 col-xs-12">
+          <div class="box-content">
+            <div class="widget-title">Thiết kế chi tiết</div>
+            <div class="text-widget">
+              <%-product.sanpham_thietke%>
             </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <section class="best-seller" style="margin-top: 60px;">
-      <div class="container">
-        <div class="best-seller-title">
-          <h2>Sản phẩm tương tự</h2>
-        </div>
-        <div class="best-seller-list row row-cols-2 row-cols-md-4 g-4">
-          <div class="col">
-            <div class="card h-100">
-              <a href="">
-                <img src="https://tamanh.net/wp-content/uploads/2020/09/ava-tui-dung-laptop-da-bo-TTA1120-N.jpg"
-                  class="card-img-top" alt="...">
-              </a>
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <a class="card-text" href="">This is a longer card with supporting text below as a natural lead-in to
-                  additional
-                  content. This content is a little bit longer.</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <a href="">
-                <img src="https://tamanh.net/wp-content/uploads/2020/06/ava-mau-that-lung-nam-D390-202012-2.jpg"
-                  class="card-img-top" alt="...">
-              </a>
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <a class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <a href="">
-                <img
-                  src="https://tamanh.net/wp-content/uploads/2019/01/ava-vi-tam-anh-thiet-ke-dang-ngang-co-dien-VTANF2222-1-D-1.jpg"
-                  class="card-img-top" alt="...">
-              </a>
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <a class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                  content.</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <a href="">
-                <img src="https://tamanh.net/wp-content/uploads/2015/09/ava-giay-luoi-nam-quai-ngang-GNTA2151-D-1.jpg"
-                  class="card-img-top" alt="...">
-              </a>
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <a class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</a>
-              </div>
+      <div class="row">
+        <div class="col-md-7 col-xs-12">
+          <div class="box-content">
+            <div class="widget-title">Mô tả sản phẩm</div>
+            <div class="text-widget">
+              <%-product.sanpham_mota%>
             </div>
           </div>
         </div>
-        <a href="" class="see-all">xem tất cả sản phẩm</a>
+        <div class="col-md-5 col-xs-12">
+          <img src="/uploads/<%=images[2].sanpham_anh%>" alt="">
+        </div>
       </div>
-    </section>
 
-    <%- include('partials/reviews') %>
+      <div class="row">
+        <div class="col-md-5 col-xs-12">
+          <img src="/uploads/<%=images[3].sanpham_anh%>" alt="">
+        </div>
+        <div class="col-md-7 col-xs-12">
+          <div class="box-content">
+            <div class="widget-title">Chính sách sản phẩm</div>
+            <div class="text-widget">
+              <%-product.sanpham_chinhsach%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <%- include('partials/footer') %>
+<section class="best-seller" style="margin-top: 60px;">
+  <div class="container">
+    <div class="best-seller-title">
+      <h2>Sản phẩm tương tự</h2>
+    </div>
+    <div class="best-seller-list row row-cols-2 row-cols-md-4 g-4">
+      <div class="col">
+        <div class="card h-100">
+          <a href="">
+            <img src="https://tamanh.net/wp-content/uploads/2020/09/ava-tui-dung-laptop-da-bo-TTA1120-N.jpg" class="card-img-top" alt="...">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <a class="card-text" href="">This is a longer card with supporting text below as a natural lead-in to
+              additional
+              content. This content is a little bit longer.</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <a href="">
+            <img src="https://tamanh.net/wp-content/uploads/2020/06/ava-mau-that-lung-nam-D390-202012-2.jpg" class="card-img-top" alt="...">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <a class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+              content. This content is a little bit longer.</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <a href="">
+            <img src="https://tamanh.net/wp-content/uploads/2019/01/ava-vi-tam-anh-thiet-ke-dang-ngang-co-dien-VTANF2222-1-D-1.jpg" class="card-img-top" alt="...">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <a class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+              content.</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <a href="">
+            <img src="https://tamanh.net/wp-content/uploads/2015/09/ava-giay-luoi-nam-quai-ngang-GNTA2151-D-1.jpg" class="card-img-top" alt="...">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <a class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+              content. This content is a little bit longer.</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="" class="see-all">xem tất cả sản phẩm</a>
+  </div>
+</section>
+
+<%- include('partials/reviews') %>
+
+<%- include('partials/footer') %>

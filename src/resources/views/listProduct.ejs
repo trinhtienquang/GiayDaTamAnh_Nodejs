@@ -45,13 +45,13 @@
       <% products.forEach(product => { %>
       <div class="col">
         <div class="card h-100">
-          <a href="">
+          <a href="/chi-tiet-san-pham/<%=slugify(product.sanpham_ten)%>">
             <img src="/uploads/<%=product.sanpham_anh%>" class="card-img-top" alt="...">
           </a>
           <div class="card-body">
             <h5 class="card-title"><%=Number(product.sanpham_gia).toLocaleString('vi-VN')%> Đ</h5>
             <div class="card-text">
-              <a href=""><%=product.sanpham_ten%>-<%=product.sanpham_ma%></a>
+              <a href="/chi-tiet-san-pham/<%=slugify(product.sanpham_ten)%>"><%=product.sanpham_ten%>-<%=product.sanpham_ma%></a>
             </div>
           </div>
         </div>
@@ -61,7 +61,7 @@
   </div>
 </section>
 
-<div class="container">
+<div class=" container">
   <div class="pagination">
     <ul>
       <% for(let i = 1; i <= totalPages; i++) { %>

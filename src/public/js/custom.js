@@ -83,3 +83,15 @@ amountElement.addEventListener('input', ()=>{
     console.log(amount);
 })
 
+const sizeItems = document.querySelectorAll('#choose-size li');
+
+  // Lặp qua từng phần tử và thêm sự kiện click
+  sizeItems.forEach(item => {
+    item.addEventListener('click', function() {
+      // Xóa lớp 'active' khỏi tất cả các phần tử li trong danh sách
+      sizeItems.forEach(li => li.classList.remove('active'));
+      
+      // Thêm lớp 'active' vào phần tử li được click
+      this.classList.add('active');
+    });
+  });
