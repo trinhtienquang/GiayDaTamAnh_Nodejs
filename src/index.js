@@ -4,6 +4,7 @@ const bodyparser = require('body-parser');
 const app = express();
 
 var menuController = require('../src/app/controllers/menuController');
+var footerController = require('../src/app/controllers/footerController');
 
 
 const route = require('./routes');
@@ -19,6 +20,7 @@ app.set('views', path.join(__dirname, 'resources', 'views'));
 
 //cài đặt route
 app.use(menuController.renderMenu) //render menu vào các trang
+app.use(footerController.renderFooter) //render footer vào các trang
 route(app);
 
 

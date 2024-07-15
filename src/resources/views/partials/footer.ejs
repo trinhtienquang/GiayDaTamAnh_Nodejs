@@ -37,96 +37,26 @@
       </div>
       <div class="container">
         <div class="row">
+          <% for (let city in storesByCity) { %>
           <div class="map col-md-4 col-xs-12">
             <div class="city">
-              <h4>Hà Nội</h4>
+              <h4><%= city %></h4>
             </div>
             <div class="list-address">
               <ul>
+                <% storesByCity[city].forEach(store => { %>
                 <li>
-                  <div class="address"><i class="icon-location3"></i> 86 Cầu Giấy, Q.Cầu Giấy</div>
+                  <div class="address"><i class="icon-location3"></i> <%= store.cuahang_diachi %></div>
                   <div class="hotline_map">
-                    <a href="tel:02466736901">Tel: (024)66736901</a>
-                    <a href="" class="link-map">(Bản đồ)</a>
+                    <a href="tel:<%= store.cuahang_phone %>">Tel: <%= store.cuahang_phone %></a>
+                    <a href="<%= store.cuahang_map %>" class="link-map">(Bản đồ)</a>
                   </div>
                 </li>
-                <li>
-                  <div class="address"><i class="icon-location3"></i> 86 Cầu Giấy, Q.Cầu Giấy</div>
-                  <div class="hotline_map">
-                    <a href="tel:02466736901">Tel: (024)66736901</a>
-                    <a href="" class="link-map">(Bản đồ)</a>
-                  </div>
-                </li>
-                <li>
-                  <div class="address"><i class="icon-location3"></i> 86 Cầu Giấy, Q.Cầu Giấy</div>
-                  <div class="hotline_map">
-                    <a href="tel:02466736901">Tel: (024)66736901</a>
-                    <a href="" class="link-map">(Bản đồ)</a>
-                  </div>
-                </li>
+                <% }); %>
               </ul>
             </div>
           </div>
-          <div class="map col-md-4 col-xs-12">
-            <div class="city">
-              <h4>Hà Nội</h4>
-            </div>
-            <div class="list-address">
-              <ul>
-                <li>
-                  <div class="address"><i class="icon-location3"></i> 86 Cầu Giấy, Q.Cầu Giấy</div>
-                  <div class="hotline_map">
-                    <a href="tel:02466736901">Tel: (024)66736901</a>
-                    <a href="" class="link-map">(Bản đồ)</a>
-                  </div>
-                </li>
-                <li>
-                  <div class="address"><i class="icon-location3"></i> 86 Cầu Giấy, Q.Cầu Giấy</div>
-                  <div class="hotline_map">
-                    <a href="tel:02466736901">Tel: (024)66736901</a>
-                    <a href="" class="link-map">(Bản đồ)</a>
-                  </div>
-                </li>
-                <li>
-                  <div class="address"><i class="icon-location3"></i> 86 Cầu Giấy, Q.Cầu Giấy</div>
-                  <div class="hotline_map">
-                    <a href="tel:02466736901">Tel: (024)66736901</a>
-                    <a href="" class="link-map">(Bản đồ)</a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="map col-md-4 col-xs-12">
-            <div class="city">
-              <h4>Hà Nội</h4>
-            </div>
-            <div class="list-address">
-              <ul>
-                <li>
-                  <div class="address"><i class="icon-location3"></i> 86 Cầu Giấy, Q.Cầu Giấy</div>
-                  <div class="hotline_map">
-                    <a href="tel:02466736901">Tel: (024)66736901</a>
-                    <a href="" class="link-map">(Bản đồ)</a>
-                  </div>
-                </li>
-                <li>
-                  <div class="address"><i class="icon-location3"></i> 86 Cầu Giấy, Q.Cầu Giấy</div>
-                  <div class="hotline_map">
-                    <a href="tel:02466736901">Tel: (024)66736901</a>
-                    <a href="" class="link-map">(Bản đồ)</a>
-                  </div>
-                </li>
-                <li>
-                  <div class="address"><i class="icon-location3"></i> 86 Cầu Giấy, Q.Cầu Giấy</div>
-                  <div class="hotline_map">
-                    <a href="tel:02466736901">Tel: (024)66736901</a>
-                    <a href="" class="link-map">(Bản đồ)</a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
+          <% } %>
         </div>
       </div>
     </div>
