@@ -1,0 +1,60 @@
+.title-section h1 {
+  font-weight: 400;
+  font-size: 30px; }
+
+.content-map {
+  margin: 70px 0 100px; }
+  .content-map .container {
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6; }
+  .content-map .list-map {
+    padding: 50px 0 30px; }
+    .content-map .list-map .map-item {
+      border-bottom: 1px solid #e6e6e6;
+      padding: 0 0 20px 30px;
+      margin: 0 0 20px !important; }
+      .content-map .list-map .map-item:first-child {
+        background: url(https://tamanh.net/wp-content/themes/banhang/images/bg_number_one.png);
+        background-position: -30% 80%; }
+      .content-map .list-map .map-item:nth-child(2) {
+        background: url(https://tamanh.net/wp-content/themes/banhang/images/bg_number_two.png);
+        background-position: 0 80%; }
+      .content-map .list-map .map-item:nth-child(3) {
+        background: url(https://tamanh.net/wp-content/themes/banhang/images/bg_number_three.png);
+        background-position: -7% 80%; }
+      .content-map .list-map .map-item:nth-child(4) {
+        background: url(https://tamanh.net/wp-content/themes/banhang/images/bg_number_four.png);
+        background-position: 0 80%; }
+      .content-map .list-map .map-item:nth-child(5) {
+        background: url(https://tamanh.net/wp-content/themes/banhang/images/bg_number_five.jpg);
+        background-position: 0 80%; }
+      .content-map .list-map .map-item:last-child {
+        border: none; }
+      .content-map .list-map .map-item .widget-title {
+        font-size: 20px;
+        font-family: 'iCiel Fester Semi-Condensed';
+        text-transform: uppercase; }
+      .content-map .list-map .map-item .textwidget a {
+        color: #bbb; }
+        .content-map .list-map .map-item .textwidget a .phone_undertext {
+          border-bottom: 1px solid #ddba76;
+          color: #444a59; }
+
+.infomation .infomation-item {
+  position: relative;
+  padding-bottom: 50px;
+  padding-left: 50px; }
+  .infomation .infomation-item::before {
+    content: '';
+    height: 2px;
+    width: 30px;
+    background-color: #ddba76;
+    position: absolute;
+    left: 0px;
+    top: 13px; }
+  .infomation .infomation-item .widget-title {
+    font-size: 20px;
+    font-family: 'iCiel Fester Semi-Condensed';
+    text-transform: uppercase; }
+  .infomation .infomation-item .textwidget {
+    font-size: 15px; }

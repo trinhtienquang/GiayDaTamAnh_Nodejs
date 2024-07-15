@@ -2,12 +2,14 @@
 
 <section class="slider">
   <div class="single-item">
+    <%sliders.forEach(slider => { %>
     <div>
-      <img src="/images/giayda/banner-web-tam-anh-new-2023-final.jpg" alt="Giày da Tâm Anh">
+      <img src="/uploads/<%=slider.slider_image%>" alt="Giày da Tâm Anh">
     </div>
-    <div>
+    <%})%>
+    <!-- <div>
       <img src="/images/giayda/banner-web-tam-anh-new-2023-final.jpg" alt="Giày da Tâm Anh">
-    </div>
+    </div> -->
   </div>
 </section>
 

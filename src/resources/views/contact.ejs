@@ -1,0 +1,81 @@
+<%- include('partials/header') %>
+
+<section class="direct">
+  <div class="container">
+    <ol class="breakcumb">
+      <li><a href="/"><span>Trang chủ</span></a></li>
+      <li><a href="/lien-he"><span>Liên hệ</span></a></li>
+    </ol>
+  </div>
+</section>
+
+<section class="title-section">
+  <div class="container">
+    <h1>Liên hệ</h1>
+  </div>
+</section>
+
+<section class="content-map">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <div class="list-map">
+          <%stores.map(function(store, index) { %>
+          <div class="map-item">
+            <div class="widget-title">Showroom <%=index + 1%></div>
+            <div class="textwidget">
+              <p><%=store.cuahang_diachi%>, <%=store.cuahang_city%> - Tel: <a href="tel:<%= store.cuahang_phone_part1 + store.cuahang_phone_part2 %>">(<%= store.cuahang_phone_part1 %>) <span class="phone_undertext"><%= store.cuahang_phone_part2 %></span></a></p>
+              <p>🌐 Chỉ đường đến cửa hàng: <a href="<%=store.cuahang_map%>" target="_blank">Bản đồ</a></p>
+            </div>
+          </div>
+          <%})%>
+        </div>
+      </div>
+      <div class="col-6">
+        <img src="https://tamanh.net/wp-content/uploads/2018/04/MapTamAnh.jpg" alt="" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="infomation">
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+        <div class="infomation-item">
+          <div class="widget-title">Email</div>
+          <div class="textwidget">cskh@tamanh.net</div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="infomation-item">
+          <div class="widget-title">Bán hàng online</div>
+          <div class="textwidget">0333.50.3333</div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="infomation-item">
+          <div class="widget-title">Mã số doanh nghiệp</div>
+          <div class="textwidget">Mã số doanh nghiệp 0105-403-292 ĐK ngày 12 tháng 07 năm 2011</div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="infomation-item">
+          <div class="widget-title">Thời gian phục vụ</div>
+          <div class="textwidget">8h30-22h/Tất cả các ngày trong tuần</div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="infomation-item">
+          <div class="widget-title">Hỗ trợ</div>
+          <div class="textwidget"><a href="#">Hướng dẫn mua hàng</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<%- include('partials/reviews') %>
+
+<%- include('partials/commitment') %>
+
+<%- include('partials/footer') %>
