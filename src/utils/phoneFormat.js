@@ -4,7 +4,7 @@ function formatPhoneNumber(phone) {
  // Tách 3 số đầu tiên và phần còn lại
  let part1 = cleaned.slice(0, 3);
  let part2 = cleaned.slice(3);
- return { part1, part2 };
+ return {cleaned, part1, part2 };
 }
 
 module.exports = formatPhoneNumber

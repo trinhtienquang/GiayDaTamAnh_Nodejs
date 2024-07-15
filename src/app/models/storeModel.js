@@ -1,4 +1,5 @@
 var sql = require('../../config/db');
+const  formatPhoneNumber  = require('../../utils/phoneFormat');
 
 exports.getStore = (results) => {
   const sqlQuery = 'SELECT * FROM tbl_cuahang';
@@ -20,6 +21,13 @@ exports.getStoresByCity = (results) => {
     if (err) {
       return results(err, null);
     }
+     // Xử lý số điện thoại trước khi trả về
+     res.forEach(row => {
+      if (row.cuahang_phone) {
+          const formattedPhone = formatPhoneNumber(row.cuahang_phone);
+          row.cuahang_phone_cleaned = formattedPhone.cleaned;
+      }
+  });
     results(null, res);
   });
 };

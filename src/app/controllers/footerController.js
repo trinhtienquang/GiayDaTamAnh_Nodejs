@@ -13,6 +13,7 @@ exports.renderFooter = (req, res, next) => {
       acc[store.cuahang_city].push(store);
       return acc;
   }, {});
+  // console.log(results)
   // console.log(storesByCity)
   res.locals.storesByCity = storesByCity;
   next(); 
