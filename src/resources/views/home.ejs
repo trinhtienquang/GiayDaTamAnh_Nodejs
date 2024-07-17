@@ -137,57 +137,21 @@
       <h2>Sản phẩm bán chạy</h2>
     </div>
     <div class="best-seller-list row row-cols-2 row-cols-md-4 g-4">
+      <%hotProducts.forEach(product => { %>
       <div class="col">
         <div class="card h-100">
           <a href="">
-            <img src="https://tamanh.net/wp-content/uploads/2020/09/ava-tui-dung-laptop-da-bo-TTA1120-N.jpg" class="card-img-top" alt="...">
+            <img src="/uploads/<%=product.sanpham_anh%>" class="card-img-top" alt="...">
           </a>
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <a class="card-text" href="">This is a longer card with supporting text below as a natural lead-in to
-              additional
-              content. This content is a little bit longer.</a>
+            <h5 class="card-title"><%=Number(product.sanpham_gia).toLocaleString('vi-VN')%> Đ</h5>
+            <a class="card-text" href="/chi-tiet-san-pham/<%=slugify(product.sanpham_ten)%>"><%=product.sanpham_ten%>-<%=product.sanpham_ma%> </a>
           </div>
         </div>
       </div>
-      <div class="col">
-        <div class="card h-100">
-          <a href="">
-            <img src="https://tamanh.net/wp-content/uploads/2020/06/ava-mau-that-lung-nam-D390-202012-2.jpg" class="card-img-top" alt="...">
-          </a>
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <a class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-              content. This content is a little bit longer.</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <a href="">
-            <img src="https://tamanh.net/wp-content/uploads/2019/01/ava-vi-tam-anh-thiet-ke-dang-ngang-co-dien-VTANF2222-1-D-1.jpg" class="card-img-top" alt="...">
-          </a>
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <a class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-              content.</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <a href="">
-            <img src="https://tamanh.net/wp-content/uploads/2015/09/ava-giay-luoi-nam-quai-ngang-GNTA2151-D-1.jpg" class="card-img-top" alt="...">
-          </a>
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <a class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-              content. This content is a little bit longer.</a>
-          </div>
-        </div>
-      </div>
+      <%})%>
     </div>
-    <a href="" class="see-all">xem tất cả sản phẩm</a>
+    <a href="/san-pham" class="see-all">xem tất cả sản phẩm</a>
   </div>
 </section>
 

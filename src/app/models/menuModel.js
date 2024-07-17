@@ -21,7 +21,7 @@ exports.getLoaiSanPhams = (results) => {
 };
 
 exports.getDanhMucByName = (danhmucTen, callback) => {
-  const query = 'SELECT * FROM tbl_danhmuc WHERE danhmuc_ten = ?';
+  const query = 'SELECT * FROM tbl_danhmuc WHERE REPLACE(lower(danhmuc_ten), "đ", "d")  = ?';
   sql.query(query, [danhmucTen], callback);
 };
 
@@ -31,7 +31,7 @@ exports.getDanhMucById = (danhmucTen, callback) => {
 };
 
 exports.getLoaiSanPhamByName = (loaisanphamTen, callback) => {
-  const query = 'SELECT * FROM tbl_loaisanpham WHERE loaisanpham_ten = ?';
+  const query = 'SELECT * FROM tbl_loaisanpham WHERE REPLACE(lower(loaisanpham_ten), "đ", "d") = ?';
   sql.query(query, [loaisanphamTen], callback);
 };
 

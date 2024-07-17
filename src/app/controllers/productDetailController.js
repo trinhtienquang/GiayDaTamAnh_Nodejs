@@ -4,6 +4,7 @@ const slugify = require('../../utils/slugify');
 const util = require('util');
 
 const getProductBySlug = util.promisify(productModel.getProductBySlug);
+const getSameProducts = util.promisify(productModel.getSameProducts)
 const getDanhMucById = util.promisify(menuModel.getDanhMucById);
 const getAnhSanPhamById = util.promisify(menuModel.getAnhSanPhamById);
 const getSizeSanPhamById = util.promisify(menuModel.getSizeSanPhamById);
@@ -26,7 +27,13 @@ exports.renderProductDetail = async (req, res) => {
     if (!danhmuc || danhmuc.length === 0) {
       return res.status(404).send('Danh mục không tồn tại');
     }
-
+    //Lấy sản phẩm tương tự dựa trên loại sản phẩm
+    const sameProducts = await getSameProducts(product.loaisanpham_id, product.sanpham_id);
+    if (!sameProducts || sameProducts.length === 0) {
+      // return res.status(404).send('');
+      console.log('Không tìm thấy loại sản phẩm tương tự');
+    }
+    // console.log(sameProducts)
     const images = await getAnhSanPhamById(product.sanpham_id);
     // console.log(images)
     const sizes = await getSizeSanPhamById(product.sanpham_id);
@@ -39,6 +46,7 @@ exports.renderProductDetail = async (req, res) => {
 
     res.render('productDetail', {
       product: product,
+      sameProducts: sameProducts,
       breadcrumb: breadcrumb,
       images: images ? images : [],
       sizes: sizes ? sizes : [],

@@ -553,7 +553,9 @@ ol {
     cursor: default; }
   .best-seller .best-seller-list .card-text {
     cursor: pointer;
-    transition: all 0.1s linear; }
+    display: block;
+    transition: all 0.1s linear;
+    text-align: center; }
   .best-seller .best-seller-list .card-text:hover {
     color: #ddba76; }
   .best-seller .see-all {

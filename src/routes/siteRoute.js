@@ -13,5 +13,8 @@ router.get('/blog-thoi-trang', siteController.blog)
 
 router.get('/tin-tuc', siteController.news)
 
+router.get('/san-pham', siteController.getAllProduct)
+
+
     
 module.exports = router;
