@@ -8,7 +8,7 @@ const util = require('util');
 exports.index = function(req, res) {
   sliderModel.getSlider(function(err, sliders){
     productModel.getHotProducts(function(err, hotProducts){
-      console.log(hotProducts)
+      // console.log(hotProducts)
       res.render('home',{
         sliders:sliders,
         hotProducts: hotProducts,
