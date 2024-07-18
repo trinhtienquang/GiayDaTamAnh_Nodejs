@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="col-xs-12 col-md-5 col-md-offset-1">
-        <div class="product-summary">
+        <div class="product-summary" data-product-id="<%= product.sanpham_id %>">
           <h1 class="product_title"><%=product.sanpham_ten%> <%=product.sanpham_ma%></h1>
           <div class="product_details">
             <%-product.sanpham_gioithieu%>
@@ -51,6 +51,7 @@
                   <i class="ph-plus"></i>
                 </button>
               </div>
+              <%if(sizes.length > 0){%>
               <div class="list-sizes">
                 <ul id="choose-size">
                   <% sizes.forEach(size => {%>
@@ -60,8 +61,9 @@
                   <%})%>
                 </ul>
               </div>
+              <%}%>
             </div>
-            <button class="btn-addcart" data-product-quantity="document.getElementById('soluong').value">
+            <button class="btn-addcart">
               Thanh toán ngay
             </button>
           </div>
@@ -73,97 +75,97 @@
 
 <%- include('partials/commitment') %>
 
-<section class="content_detail">
-  <div class="container">
-    <div class="tabcontainer">
-      <h3>Chi tiết sản phẩm</h3>
-    </div>
-    <div class="tab_content_detail">
-      <div class="row">
-        <div class="col-md-7 col-xs-12">
-          <div class="box-content">
-            <div class="widget-title">Đặc điểm chung sản phẩm</div>
-            <div class="text-widget">
-              <%-product.sanpham_dacdiemchung%>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-5 col-xs-12">
-          <img src="/uploads/<%=images[0].sanpham_anh%>" alt="">
-        </div>
-      </div>
+              <section class="content_detail">
+                <div class="container">
+                  <div class="tabcontainer">
+                    <h3>Chi tiết sản phẩm</h3>
+                  </div>
+                  <div class="tab_content_detail">
+                    <div class="row">
+                      <div class="col-md-7 col-xs-12">
+                        <div class="box-content">
+                          <div class="widget-title">Đặc điểm chung sản phẩm</div>
+                          <div class="text-widget">
+                            <%-product.sanpham_dacdiemchung%>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-5 col-xs-12">
+                        <img src="/uploads/<%=images[0].sanpham_anh%>" alt="">
+                      </div>
+                    </div>
 
-      <div class="row">
-        <div class="col-md-5 col-xs-12">
-          <img src="/uploads/<%=images[1].sanpham_anh%>" alt="">
-        </div>
-        <div class="col-md-7 col-xs-12">
-          <div class="box-content">
-            <div class="widget-title">Thiết kế chi tiết</div>
-            <div class="text-widget">
-              <%-product.sanpham_thietke%>
-            </div>
-          </div>
-        </div>
-      </div>
+                    <div class="row">
+                      <div class="col-md-5 col-xs-12">
+                        <img src="/uploads/<%=images[1].sanpham_anh%>" alt="">
+                      </div>
+                      <div class="col-md-7 col-xs-12">
+                        <div class="box-content">
+                          <div class="widget-title">Thiết kế chi tiết</div>
+                          <div class="text-widget">
+                            <%-product.sanpham_thietke%>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
-      <div class="row">
-        <div class="col-md-7 col-xs-12">
-          <div class="box-content">
-            <div class="widget-title">Mô tả sản phẩm</div>
-            <div class="text-widget">
-              <%-product.sanpham_mota%>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-5 col-xs-12">
-          <img src="/uploads/<%=images[2].sanpham_anh%>" alt="">
-        </div>
-      </div>
+                    <div class="row">
+                      <div class="col-md-7 col-xs-12">
+                        <div class="box-content">
+                          <div class="widget-title">Mô tả sản phẩm</div>
+                          <div class="text-widget">
+                            <%-product.sanpham_mota%>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-5 col-xs-12">
+                        <img src="/uploads/<%=images[2].sanpham_anh%>" alt="">
+                      </div>
+                    </div>
 
-      <div class="row">
-        <div class="col-md-5 col-xs-12">
-          <img src="/uploads/<%=images[3].sanpham_anh%>" alt="">
-        </div>
-        <div class="col-md-7 col-xs-12">
-          <div class="box-content">
-            <div class="widget-title">Chính sách sản phẩm</div>
-            <div class="text-widget">
-              <%-product.sanpham_chinhsach%>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+                    <div class="row">
+                      <div class="col-md-5 col-xs-12">
+                        <img src="/uploads/<%=images[3].sanpham_anh%>" alt="">
+                      </div>
+                      <div class="col-md-7 col-xs-12">
+                        <div class="box-content">
+                          <div class="widget-title">Chính sách sản phẩm</div>
+                          <div class="text-widget">
+                            <%-product.sanpham_chinhsach%>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
 
-<% if (sameProducts && sameProducts.length > 0) { %>
-<section class="best-seller" style="margin-top: 60px;">
-  <div class="container">
-    <div class="best-seller-title">
-      <h2>Sản phẩm tương tự</h2>
-    </div>
-    <div class="best-seller-list row row-cols-2 row-cols-md-4 g-4">
-      <%sameProducts.forEach(product => { %>
-      <div class="col">
-        <div class="card h-100">
-          <a href="">
-            <img src="/uploads/<%=product.sanpham_anh%>" class="card-img-top" alt="...">
-          </a>
-          <div class="card-body">
-            <h5 class="card-title"><%=Number(product.sanpham_gia).toLocaleString('vi-VN')%> Đ</h5>
-            <a class="card-text" href="/chi-tiet-san-pham/<%=slugify(product.sanpham_ten)%>"><%=product.sanpham_ten%>-<%=product.sanpham_ma%> </a>
-          </div>
-        </div>
-      </div>
-      <%})%>
-    </div>
-    <a href="" class="see-all">xem tất cả sản phẩm</a>
-  </div>
-</section>
-<% } %>
+              <% if (sameProducts && sameProducts.length > 0) { %>
+              <section class="best-seller" style="margin-top: 60px;">
+                <div class="container">
+                  <div class="best-seller-title">
+                    <h2>Sản phẩm tương tự</h2>
+                  </div>
+                  <div class="best-seller-list row row-cols-2 row-cols-md-4 g-4">
+                    <%sameProducts.forEach(sameProduct => { %>
+                    <div class="col">
+                      <div class="card h-100">
+                        <a href="/chi-tiet-san-pham/<%=slugify(sameProduct.sanpham_ten)%>">
+                          <img src="/uploads/<%=sameProduct.sanpham_anh%>" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                          <h5 class="card-title"><%=Number(sameProduct.sanpham_gia).toLocaleString('vi-VN')%> Đ</h5>
+                          <a class="card-text" href="/chi-tiet-san-pham/<%=slugify(sameProduct.sanpham_ten)%>"><%=sameProduct.sanpham_ten%>-<%=sameProduct.sanpham_ma%> </a>
+                        </div>
+                      </div>
+                    </div>
+                    <%})%>
+                  </div>
+                  <a href="" class="see-all">xem tất cả sản phẩm</a>
+                </div>
+              </section>
+              <% } %>
 
-<%- include('partials/reviews') %>
+              <%- include('partials/reviews') %>
 
-<%- include('partials/footer') %>
+              <%- include('partials/footer') %>
