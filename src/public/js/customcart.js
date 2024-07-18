@@ -65,57 +65,64 @@ document.addEventListener('DOMContentLoaded', function() {
   function updateCartUI() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartContent = document.querySelector('.content_scroll_cart tbody');
+    const bottomCart = document.querySelector('.bottom_giohang');
     cartContent.innerHTML = '';
 
     let totalAmount = 0;   //biến để tính tổng tiền
     let totalQuantity = 0; //biến để tính tổng số lượng sản phẩm
-
-    cart.forEach(item => {
-      totalAmount += item.price * item.quantity;
-      totalQuantity += item.quantity;
-
-      const cartItem = document.createElement('tr');
-      cartItem.classList.add('cart_item');
-
-      let sizeHtml = '';
-      if (item.size !== "N/A") {
-        sizeHtml = `
-          <dt class="variation-size">Size:</dt>
-          <dd class="variation-size">
-            <p>${item.size}</p>
-          </dd>
+    if (cart.length === 0) {
+      // Nếu giỏ hàng rỗng, hiển thị thông báo
+      cartContent.innerHTML = '<p>Chưa có sản phẩm trong giỏ hàng.<p>';
+      bottomCart.style.display = 'none'; // Ẩn phần bottom_giohang khi giỏ hàng rỗng
+    }else{
+      cart.forEach(item => {
+        totalAmount += item.price * item.quantity;
+        totalQuantity += item.quantity;
+  
+        const cartItem = document.createElement('tr');
+        cartItem.classList.add('cart_item');
+  
+        let sizeHtml = '';
+        if (item.size !== "N/A") {
+          sizeHtml = `
+            <dt class="variation-size">Size:</dt>
+            <dd class="variation-size">
+              <p>${item.size}</p>
+            </dd>
+          `;
+        }
+        cartItem.innerHTML = `
+          <td class="item_card_checkout">
+            <div class="product-image">
+              <a href=""><img src="${item.image}" alt="" class="img-fluid"></a>
+              <div class="product-remove">
+                <a href="#" class="remove" data-id="${item.id}" data-size="${item.size}">x</a>
+              </div>
+            </div>
+            <div class="product-detail">
+              <div class="name">
+                <a href="">${item.name}</a>
+                <dl class="variation">
+                    ${sizeHtml}
+                    <dt class="variation-thuonghieu">Thương hiệu:</dt>
+                      <dd class="variation-thuonghieu">
+                        <p>Đồ Da Tâm Anh</p>
+                      </dd>
+                    </dl>
+                </dl>
+              </div>
+              <div class="price_quantity">
+                <div class="product-quantity">x${item.quantity}</div>
+                <div class="product-price">${item.price.toLocaleString('vi-VN')}₫</div>
+              </div>
+            </div>
+          </td>
         `;
-      }
-      cartItem.innerHTML = `
-        <td class="item_card_checkout">
-          <div class="product-image">
-            <a href=""><img src="${item.image}" alt="" class="img-fluid"></a>
-            <div class="product-remove">
-              <a href="#" class="remove" data-id="${item.id}" data-size="${item.size}">x</a>
-            </div>
-          </div>
-          <div class="product-detail">
-            <div class="name">
-              <a href="">${item.name}</a>
-              <dl class="variation">
-                  ${sizeHtml}
-                  <dt class="variation-thuonghieu">Thương hiệu:</dt>
-                    <dd class="variation-thuonghieu">
-                      <p>Đồ Da Tâm Anh</p>
-                    </dd>
-                  </dl>
-              </dl>
-            </div>
-            <div class="price_quantity">
-              <div class="product-quantity">x${item.quantity}</div>
-              <div class="product-price">${item.price.toLocaleString('vi-VN')}₫</div>
-            </div>
-          </div>
-        </td>
-      `;
-
-      cartContent.appendChild(cartItem);
-    });
+  
+        cartContent.appendChild(cartItem);
+      });
+      bottomCart.style.display = 'block'; // Hiển thị bottom_giohang khi có sản phẩm trong giỏ hàng
+    }
 
     document.querySelector('.checkout .amount').innerText = `${totalAmount.toLocaleString('vi-VN')}₫`;
     document.querySelector('.tongtien .amount').innerText = `${totalAmount.toLocaleString('vi-VN')}₫`;
