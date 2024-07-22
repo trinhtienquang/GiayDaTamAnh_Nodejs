@@ -1,13 +1,13 @@
 'user strict';
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 
 //local mysql db connection
 var mysqlConnection = mysql.createConnection({
   host:'localhost',
   user:'root',
-  password:'',
-  database:'giayda_tamanh'
+  password:'admin123',
+  database:'giaydatamanh'
 });
 
 // connect to database
