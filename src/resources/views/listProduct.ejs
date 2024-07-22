@@ -26,7 +26,8 @@
 <section class="product-filter">
   <div class="container">
     <div class="l-filter">
-      <p class="woocommerce-result-count">Showing 1-<%= productsOnPage %> of <%= totalProducts %> results</p>
+      <p class="woocommerce-result-count">Showing <%= (currentPage - 1) * limit + 1 %>-
+        <%= Math.min(currentPage * limit, totalProducts) %> of <%= totalProducts %> results</p>
       <form class="woocommerce-ordering" method="get">
         <select name="orderby" class="orderby" onchange="this.form.submit()">
           <option value="menu_order" <%= orderby === 'menu_order' ? 'selected' : '' %>>Thứ tự mặc định</option>

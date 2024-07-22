@@ -50,7 +50,7 @@ const getAllProduct = util.promisify(productModel.getAllProduct);
 exports.getAllProduct = async function(req, res){
   try {
   const page = parseInt(req.query.page) || 1;
-    const limit = 5;
+    const limit = 10;
     const offset = (page - 1) * limit;
 
     const orderby = req.query.orderby || 'menu_order';
@@ -66,6 +66,7 @@ exports.getAllProduct = async function(req, res){
     res.render('listProduct', {
       products: products,
       currentPage: page,
+      limit: limit,
       totalPages: totalPages,
       productsOnPage: productsOnPage,
       totalProducts: totalProducts,

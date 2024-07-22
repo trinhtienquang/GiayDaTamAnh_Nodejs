@@ -496,6 +496,12 @@ ol {
                           text-align: center;
                           width: 15px;
                           height: 15px;
+                          transition: 0.1s all;
+
+                          &:hover {
+                            color: #fff !important;
+                            background: #ddba76;
+                          }
                         }
                       }
                     }
