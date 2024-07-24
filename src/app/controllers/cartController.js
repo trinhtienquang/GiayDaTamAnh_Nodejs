@@ -2,8 +2,7 @@ const CartModel  = require('../models/cartModel');
 
 class CartController {
   static async getCart(req, res) {
-    const userId = req.user.user_id;
-    console.log(userId)
+    const userId = req.user.userId;
     try {
       const cart = await CartModel.getCartByUserId(userId);
       res.json({ success: true, cart });
@@ -13,10 +12,10 @@ class CartController {
   }
 
   static async addProductToCart(req, res) {
-    const userId = req.user.id;
-    const { id, name, image, price, quantity, size } = req.body;
+    const userId = req.user.userId;
+    const { sanpham_id, sanpham_ten, sanpham_anh, sanpham_gia, quantity, sanpham_size } = req.body;
     try {
-      await CartModel.addProductToCart(userId, id, name, image, price, quantity, size);
+      await CartModel.addProductToCart(userId, sanpham_id, sanpham_ten, sanpham_anh, sanpham_gia, quantity, sanpham_size);
       res.json({ success: true });
     } catch (error) {
       res.json({ success: false, message: error.message });
@@ -24,11 +23,12 @@ class CartController {
   }
 
   static async removeProductFromCart(req, res) {
-    const userId = req.user.id;
+    const userId = req.user.userId;
     const { productId } = req.params;
-    const { size } = req.body;
+    const { sanpham_size } = req.body;
+
     try {
-      await CartModel.removeProductFromCart(userId, productId, size);
+      await CartModel.removeProductFromCart(userId, productId, sanpham_size);
       res.json({ success: true });
     } catch (error) {
       res.json({ success: false, message: error.message });

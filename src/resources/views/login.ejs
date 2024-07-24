@@ -25,17 +25,17 @@
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('userToken')}`
           },
           body: JSON.stringify({
             phone,
-            password
+            password,
           })
         })
         .then(response => response.json())
         .then(data => {
           if (data.token) {
             localStorage.setItem('userToken', data.token);
+            localStorage.setItem('userInfo', JSON.stringify(data.user)); // Lưu thông tin người dùng
             alert('Đăng nhập thành công');
             window.location.href = '/';
           } else {

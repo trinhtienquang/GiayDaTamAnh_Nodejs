@@ -9,7 +9,7 @@ function verifyToken(req, res, next) {
   const token = authHeader.startsWith('Bearer ') ? authHeader.substring(7) : authHeader; // Lấy token sau "Bearer "
   if (!token) return res.status(403).send({ success: false, message: 'No token provided.' });
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+  jwt.verify(token, 'secret_Key', (err, decoded) => {
     if (err) return res.status(500).send({ success: false, message: 'Failed to authenticate token.' });
 
     req.user = decoded;

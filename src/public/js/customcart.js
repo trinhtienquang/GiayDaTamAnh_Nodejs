@@ -1,9 +1,9 @@
 function isUserLoggedIn() {
-  console.log(localStorage.getItem('userToken'))
+  // console.log(localStorage.getItem('userToken'))
   // Giả sử bạn có một token hoặc giá trị trong localStorage để kiểm tra trạng thái đăng nhập
   return !!localStorage.getItem('userToken');
 }
-isUserLoggedIn()
+// isUserLoggedIn()
 document.addEventListener('DOMContentLoaded', function() {
   //luôn cập nhật giỏ hàng mỗi khi tải lại trang hoặc sang trang khác
   updateCartUI();
@@ -37,15 +37,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Tạo đối tượng sản phẩm
   const product = {
-    id: productId,
-    name: productName,
-    image: productImage,
-    price: productPrice,
+    sanpham_id: productId,
+    sanpham_ten: productName,
+    sanpham_anh: productImage,
+    sanpham_gia: productPrice,
     quantity: productQuantity,
-    size: productSize
+    sanpham_size: productSize
   };
 
-  saveCartToLocalStorage(product);
+  if (isUserLoggedIn()) {
+    // Người dùng đã đăng nhập, lưu giỏ hàng vào cơ sở dữ liệu
+    saveCartToDatabase(product);
+  } else {
+    // Người dùng chưa đăng nhập, lưu giỏ hàng vào localStorage
+    saveCartToLocalStorage(product);
+  }
 
   // Cập nhật giao diện giỏ hàng
   updateCartUI();
@@ -69,10 +75,58 @@ document.addEventListener('DOMContentLoaded', function() {
     localStorage.setItem('cart', JSON.stringify(cart));
   }
 
+  // Hàm lưu giỏ hàng vào cơ sở dữ liệu
+  function saveCartToDatabase(product) {
+    fetch('/api/cart', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('userToken')}` // Giả sử bạn sử dụng token để xác thực
+      },
+      body: JSON.stringify(product)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        // console.log(data)
+        console.log('Product added to cart in database');
+      } else {
+        console.error('Error adding product to cart in database', data.message);
+      }
+    })
+    .catch(error => {
+      console.error('Error adding product to cart in database', error);
+    });
+  }
+
   // Hàm cập nhật giao diện giỏ hàng
   function updateCartUI() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    renderCart(cart)
+    if (isUserLoggedIn()) {
+      // Người dùng đã đăng nhập, lấy giỏ hàng từ cơ sở dữ liệu
+      fetch('/api/cart', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('userToken')}` // Giả sử bạn sử dụng token để xác thực
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          renderCart(data.cart);
+          console.log(data)
+        } else {
+          console.error('Error fetching cart from database', data.message);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching cart from database', error);
+      });
+    }else {
+     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    renderCart(cart) 
+    }
+    
   }
 
 // Hàm render giỏ hàng
@@ -89,7 +143,7 @@ function renderCart(cart) {
     bottomCart.style.display = 'none'; // Ẩn phần bottom_giohang khi giỏ hàng rỗng
   } else {
     cart.forEach(item => {
-      totalAmount += item.price * item.quantity;
+      totalAmount += item.sanpham_gia * item.quantity;
       totalQuantity += item.quantity;
 
       const cartItem = document.createElement('tr');
@@ -100,21 +154,21 @@ function renderCart(cart) {
         sizeHtml = `
           <dt class="variation-size">Size:</dt>
           <dd class="variation-size">
-            <p>${item.size}</p>
+            <p>${item.sanpham_size}</p>
           </dd>
         `;
       }
       cartItem.innerHTML = `
         <td class="item_card_checkout">
           <div class="product-image">
-            <a href=""><img src="${item.image}" alt="" class="img-fluid"></a>
+            <a href=""><img src="${item.sanpham_anh}" alt="" class="img-fluid"></a>
             <div class="product-remove">
-              <a href="#" class="remove" data-id="${item.id}" data-size="${item.size}">x</a>
+              <a href="#" class="remove" data-id="${item.sanpham_id}" data-size="${item.sanpham_size}">x</a>
             </div>
           </div>
           <div class="product-detail">
             <div class="name">
-              <a href="">${item.name}</a>
+              <a href="">${item.sanpham_ten}</a>
               <dl class="variation">
                   ${sizeHtml}
                   <dt class="variation-thuonghieu">Thương hiệu:</dt>
@@ -126,7 +180,7 @@ function renderCart(cart) {
             </div>
             <div class="price_quantity">
               <div class="product-quantity">x${item.quantity}</div>
-              <div class="product-price">${item.price.toLocaleString('vi-VN')}₫</div>
+              <div class="product-price">${Number(item.sanpham_gia).toLocaleString('vi-VN')}₫</div>
             </div>
           </div>
         </td>
@@ -156,10 +210,35 @@ function renderCart(cart) {
 
   // Hàm xóa sản phẩm khỏi giỏ hàng
   function removeFromCart(productId, productSize) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart = cart.filter(item => !(item.id === productId && item.size === productSize));
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartUI();
+    if (isUserLoggedIn()) {
+      // Người dùng đã đăng nhập, xóa sản phẩm từ cơ sở dữ liệu
+    fetch(`/api/cart/${productId}`, {
+      method: 'DELETE',
+      headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('userToken')}` // Giả sử bạn sử dụng token để xác thực
+      },
+      body: JSON.stringify({ sanpham_size: productSize })
+      })
+      .then(response => response.json())
+      .then(data => {
+      if (data.success) {
+      console.log('Product removed from cart in database');
+      updateCartUI();
+      } else {
+      console.error('Error removing product from cart in database', data.message);
+      }
+      })
+      .catch(error => {
+      console.error('Error removing product from cart in database', error);
+      });
+    }else{
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart = cart.filter(item => !(item.sanpham_id === productId && item.sanpham_size === productSize));
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartUI();
+    }
+    
   }
 
   // Cập nhật giao diện giỏ hàng khi tải trang

@@ -60,9 +60,8 @@ exports.login = (req, res) => {
         return res.status(401).json({message:'mật khẩu không đúng'});
       }
 
-      const token = jwt.sign({ userId: user.user_id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-      res.status(200).json({ message: 'Đăng nhập thành công', token });
-      // res.redirect('/',{token})
+      const token = jwt.sign({ userId: user.user_id }, 'secret_Key', { expiresIn: '1h' });
+      res.status(200).json({ message: 'Đăng nhập thành công', token, user: {userId: user.user_id,phone: user.phone,}});
     });
   });
 };
