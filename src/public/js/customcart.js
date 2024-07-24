@@ -1,4 +1,9 @@
-
+function isUserLoggedIn() {
+  console.log(localStorage.getItem('userToken'))
+  // Giả sử bạn có một token hoặc giá trị trong localStorage để kiểm tra trạng thái đăng nhập
+  return !!localStorage.getItem('userToken');
+}
+isUserLoggedIn()
 document.addEventListener('DOMContentLoaded', function() {
   //luôn cập nhật giỏ hàng mỗi khi tải lại trang hoặc sang trang khác
   updateCartUI();

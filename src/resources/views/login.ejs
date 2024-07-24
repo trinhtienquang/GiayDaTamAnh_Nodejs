@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+</head>
+
+<body>
+  <form id="login-form" action="/user/login" method="POST">
+    <input type="text" name="phone" id="phone" placeholder="phone">
+    <input type="password" name="password" id="password" placeholder="Password">
+    <button type="submit">Login</button>
+  </form>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const phone = document.getElementById('phone').value;
+      const password = document.getElementById('password').value;
+
+      fetch('/user/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            phone,
+            password
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.token) {
+            localStorage.setItem('userToken', data.token);
+            alert('Đăng nhập thành công');
+            window.location.href = '/';
+          } else {
+            alert('Đăng nhập thất bại: ' + data.message);
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('Đăng nhập thất bại: Lỗi máy chủ');
+        });
+    });
+  </script>
+</body>
+
+</html>
