@@ -140,7 +140,7 @@
       <%hotProducts.forEach(product => { %>
       <div class="col">
         <div class="card h-100">
-          <a href="">
+          <a href="/chi-tiet-san-pham/<%=slugify(product.sanpham_ten)%>">
             <img src="/uploads/<%=product.sanpham_anh%>" class="card-img-top" alt="...">
           </a>
           <div class="card-body">

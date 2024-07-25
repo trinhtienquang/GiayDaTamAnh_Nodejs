@@ -356,6 +356,20 @@ ol {
         }
       }
 
+
+      .user {
+        float: right;
+        padding: 12px 0 0 5px;
+        cursor: pointer;
+        position: relative;
+
+        .dropdown-menu {
+          position: absolute !important;
+          inset: 10px 0px auto auto !important;
+          min-width: 180px !important;
+        }
+      }
+
       .cart {
         float: right;
         padding: 10px 0 0;

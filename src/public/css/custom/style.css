@@ -249,6 +249,15 @@ ol {
           top: 3px;
           overflow: hidden;
           font-family: 'iCiel Fester Semi-Condensed'; }
+    .header .midle_header .container .user {
+      float: right;
+      padding: 12px 0 0 5px;
+      cursor: pointer;
+      position: relative; }
+      .header .midle_header .container .user .dropdown-menu {
+        position: absolute !important;
+        inset: 10px 0px auto auto !important;
+        min-width: 180px !important; }
     .header .midle_header .container .cart {
       float: right;
       padding: 10px 0 0;

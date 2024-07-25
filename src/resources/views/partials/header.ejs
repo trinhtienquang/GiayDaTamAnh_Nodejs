@@ -4,13 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Global stylesheets -->
   <link rel="stylesheet" href="/icons/fontawesome/styles.min.css">
   <link rel="stylesheet" href="/icons/icomoon/styles.min.css">
   <link rel="stylesheet" href="/icons/phosphor/styles.min.css">
-  <!-- Global stylesheets -->
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-
   <!-- /global stylesheets -->
 
   <!-- Core JS files -->
@@ -25,17 +24,18 @@
   <script src="/js/slick.js"></script>
   <script defer src="/js/customcart.js"></script>
   <script defer src="/js/custom.js"></script>
-
   <!-- /theme JS files -->
 
+  <!-- Theme CSS files -->
   <link rel="stylesheet" href="/css/custom/style.css">
   <link rel="stylesheet" href="/css/custom/introduce.css">
   <link rel="stylesheet" href="/css/custom/listProduct.css">
   <link rel="stylesheet" href="/css/custom/productDetail.css">
   <link rel="stylesheet" href="/css/custom/contact.css">
   <link rel="stylesheet" href="/css/custom/blog&news.css">
+  <!-- /Theme CSS files -->
 
-  <title>Document</title>
+  <title><%=title%></title>
 </head>
 
 <body>
@@ -92,6 +92,10 @@
                 <li><a href="/tin-tuc">Tin tức</a></li>
               </ul>
             </div>
+            <div class="user d-flex" id="user-menu">
+              <!--Render trong cutom.js-->
+            </div>
+
             <div class="cart"><i class="icon-cart2"></i><span class="count">0</span></div>
             <div class="search"></div>
             <div class="shopping_cart">
@@ -109,7 +113,7 @@
                     <div class="content_scroll_cart">
                       <table>
                         <tbody>
-
+                          <!--render trong customcart-->
                         </tbody>
                       </table>
                     </div>

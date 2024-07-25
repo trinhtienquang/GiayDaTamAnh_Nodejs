@@ -61,7 +61,7 @@ exports.login = (req, res) => {
       }
 
       const token = jwt.sign({ userId: user.user_id }, 'secret_Key', { expiresIn: '1h' });
-      res.status(200).json({ message: 'Đăng nhập thành công', token, user: {userId: user.user_id,phone: user.phone,}});
+      res.status(200).json({ message: 'Đăng nhập thành công', token, user: {userId: user.user_id, phone: user.phone, userName: user.user_name}});
     });
   });
 };

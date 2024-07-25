@@ -45,6 +45,7 @@ exports.renderProductDetail = async (req, res) => {
     ];
 
     res.render('productDetail', {
+      title: `${product.sanpham_ten} - ${product.sanpham_ma}`,
       product: product,
       sameProducts: sameProducts,
       breadcrumb: breadcrumb,
