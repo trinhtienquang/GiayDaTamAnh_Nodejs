@@ -77,9 +77,9 @@
       <div class="col-7">
         <div class="container px-5 mt-5">
           <div class="title">Thế giới giày da Tâm Anh</div>
-          <form id="login-form" action="/user/login" method="POST">
+          <form action="/user/forgot-password" method="POST">
             <div class="card-header">
-              <h6 class="my-2 title-login">Đăng nhập</h6>
+              <h6 class="my-2 title-login">Gửi mail</h6>
             </div>
 
             <div class="card-body">
@@ -87,22 +87,11 @@
                 <label class="form-label">Email:</label>
                 <input type="text" class="form-control" name="email" id="email" placeholder="Nhập email đăng ký tài khoản của bạn">
               </div>
-
-              <div class="mb-3 input_password">
-                <label class="form-label">Mật khẩu:</label>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Nhập mật khẩu">
-                <span class="show-password">
-                  <i class="fa-regular fa-eye"></i>
-                </span>
-              </div>
               <div class="d-flex justify-content-between">
-                <button type="submit" class="btn btn-primary">Đăng nhập<i class="ph-paper-plane-tilt ms-2"></i></button>
+                <button type="submit" class="btn btn-primary">Gửi<i class="ph-paper-plane-tilt ms-2"></i></button>
               </div>
             </div>
           </form>
-          <a href="/" class="my-2" style="display: block;">Quay lại trang chính</a>
-          <a href="/user/forgot-password" class="mb-2" style="display: block;">Quên mật khẩu?</a>
-          <p>Bạn chưa có tài khoản? <a href="/user/register">đăng ký</a></p>
         </div>
       </div>
       <div class="col-5 p-0">
@@ -110,53 +99,6 @@
       </div>
     </div>
   </div>
-  <script>
-    const passField = document.querySelector(".input_password input");
-    const showBtn = document.querySelector("span i");
-    showBtn.onclick = (() => {
-      if (passField.type === "password") {
-        passField.type = "text";
-        showBtn.classList.add("hide-btn");
-      } else {
-        passField.type = "password";
-        showBtn.classList.remove("hide-btn");
-      }
-    });
-  </script>
-  <script>
-    document.getElementById('login-form').addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-
-      fetch('/user/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email,
-            password,
-          })
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.token) {
-            localStorage.setItem('userToken', data.token);
-            localStorage.setItem('userInfo', JSON.stringify(data.user)); // Lưu thông tin người dùng
-            alert('Đăng nhập thành công');
-            window.location.href = '/';
-          } else {
-            alert('Đăng nhập thất bại: ' + data.message);
-          }
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          alert('Đăng nhập thất bại: Lỗi máy chủ');
-        });
-    });
-  </script>
 </body>
 
 </html>

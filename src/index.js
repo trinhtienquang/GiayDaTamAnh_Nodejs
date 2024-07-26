@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const bodyparser = require('body-parser');
+require('dotenv').config();
 const app = express();
 
 var menuController = require('../src/app/controllers/menuController');

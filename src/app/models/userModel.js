@@ -22,6 +22,11 @@ const User = {
       }
       return callback(null, results);
     });
+  },
+
+  updatePassword:  (userId, newPassword, callback) => {
+    const query = 'UPDATE tbl_user SET password = ? WHERE user_id = ?';
+    db.query(query, [newPassword, userId], callback);
   }
 };
 
