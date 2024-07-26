@@ -120,7 +120,7 @@ exports.countProductsById = (callback) => {
 };
 
 exports.getHotProducts = (results) =>{
-  const sqlQuery = "SELECT * FROM tbl_sanpham WHERE sapxepsp = 1 LIMIT 4"
+  const sqlQuery = "SELECT * FROM tbl_sanpham WHERE sapxepsp = 1 ORDER BY RAND() LIMIT 4"
   sql.query(sqlQuery, function(err,res){
     if (err) {
       return results(err, null);
@@ -130,7 +130,7 @@ exports.getHotProducts = (results) =>{
 }
 
 exports.getSameProducts = (loaiSanPhamId, sanPhamId, results) => {
-  const sqlQuery = "SELECT * FROM tbl_sanpham WHERE loaisanpham_id = ? AND sanpham_id != ? LIMIT 4"
+  const sqlQuery = "SELECT * FROM tbl_sanpham WHERE loaisanpham_id = ? AND sanpham_id != ? ORDER BY RAND() LIMIT 4"
   sql.query(sqlQuery, [loaiSanPhamId, sanPhamId], function(err, res){
     if (err) {
       return results(err, null);

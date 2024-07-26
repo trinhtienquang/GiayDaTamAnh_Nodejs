@@ -4,15 +4,180 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Global stylesheets -->
+  <link rel="stylesheet" href="/icons/fontawesome/styles.min.css">
+  <link rel="stylesheet" href="/icons/icomoon/styles.min.css">
+  <link rel="stylesheet" href="/icons/phosphor/styles.min.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <!-- /global stylesheets -->
+
+  <!-- Core JS files -->
+  <script src="https://kit.fontawesome.com/f6b816f05e.js" crossorigin="anonymous"></script>
+  <script src="/js/jquery/jquery.min.js"></script>
+  <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <!-- /core JS files -->
+
+  <!-- Theme JS files -->
+  <script src="/js/app.js"></script>
+  <script src="/js/slick.js"></script>
+
+  <link rel="stylesheet" href="/css/custom/style.css">
   <title>Register</title>
+
+  <style>
+    body {
+      overflow-x: hidden;
+      font-family: 'VNF-Futura';
+    }
+
+    .title {
+      display: flex;
+      justify-content: space-between;
+      padding-left: 20px;
+      font-size: 30px;
+      background-color: #eeeeee;
+      height: 70px;
+      align-items: center;
+    }
+
+    .title-login {
+      font-size: 25px;
+    }
+
+    .input_password {
+      position: relative;
+    }
+
+    .input_password span {
+      position: absolute;
+      right: 15px;
+      top: 75%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      color: black;
+      cursor: pointer;
+      display: none;
+    }
+
+    .input_password input:valid~span {
+      display: block;
+    }
+
+    .input_password span i.hide-btn::before {
+      content: "\f070";
+    }
+
+    .input_re_password {
+      position: relative;
+    }
+
+    .input_re_password span {
+      position: absolute;
+      right: 15px;
+      top: 75%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      color: black;
+      cursor: pointer;
+      display: none;
+    }
+
+    .input_re_password input:valid~span {
+      display: block;
+    }
+
+    .input_re_password span i.hide-btn::before {
+      content: "\f070";
+    }
+  </style>
 </head>
 
 <body>
-  <form id="register-form" action="" method="POST">
+  <!-- <form id="register-form" action="" method="POST">
     <input type="text" name="phone" placeholder="phone">
     <input type="password" name="password" placeholder="Password">
     <button type="submit">Register</button>
-  </form>
+  </form> -->
+  <div class="container-fluid p-0">
+    <div class="row">
+      <div class="col-7">
+        <div class="container px-5 mt-5">
+          <div class="title">Thế giới giày da Tâm Anh</div>
+          <form id="register-form" action="" method="POST">
+            <div class="card-header">
+              <h6 class="my-2 title-login">Đăng ký</h6>
+            </div>
+
+            <div class="card-body">
+              <h6 class="my-2" style="font-size: 20px;">Thông tin người dùng</h6>
+              <div class="mb-3">
+                <label class="form-label" for="user_name">Họ và tên:</label>
+                <input type="text" class="form-control" name="user_name" id="user_name" placeholder="Nhập họ và tên">
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="phone">Số điện thoại:</label>
+                <input type="text" class="form-control" name="phone" id="phone" placeholder="Nhập số điện thoại">
+              </div>
+              <h6 class="my-2" style="font-size: 20px;">Thông tin đăng nhập</h6>
+              <div class="mb-3">
+                <label class="form-label" for="email">Tài khoản Email:</label>
+                <input type="text" class="form-control" name="email" id="email" placeholder="Nhập email">
+              </div>
+              <div class="mb-3 input_password">
+                <label class="form-label" for="password">Mật khẩu:</label>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Nhập mật khẩu">
+                <span class="show-password">
+                  <i class="fa-regular fa-eye"></i>
+                </span>
+              </div>
+
+              <div class="mb-3 input_re_password">
+                <label class="form-label" for="re_password">Xác nhận lại mật khẩu:</label>
+                <input type="password" class="form-control" name="re_password" id="re_password" placeholder="Xác nhận lại mật khẩu">
+                <span class="show-re-password">
+                  <i class="fa-regular fa-eye"></i>
+                </span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <a href="/user/login" class="btn btn-secondary">Quay lại trang đăng nhập</a>
+                <button type="submit" class="btn btn-primary">Đăng ký<i class="ph-paper-plane-tilt ms-2"></i></button>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-5 p-0">
+        <img src="/images/giayda/img-dangnhap1.jpg" alt="" class="img-fluid w-100 h-100">
+      </div>
+    </div>
+  </div>
+  <script>
+    const passField = document.querySelector(".input_password input");
+    const repassField = document.querySelector(".input_re_password input");
+    const showBtnPass = document.querySelector(".show-password i");
+    const showBtnRePass = document.querySelector(".show-re-password i");
+    showBtnPass.onclick = (() => {
+      if (passField.type === "password") {
+        passField.type = "text";
+        showBtnPass.classList.add("hide-btn");
+      } else {
+        passField.type = "password";
+        showBtnPass.classList.remove("hide-btn");
+      }
+    });
+    showBtnRePass.onclick = (() => {
+      if (repassField.type === "password") {
+        repassField.type = "text";
+        showBtnRePass.classList.add("hide-btn");
+      } else {
+        repassField.type = "password";
+        showBtnRePass.classList.remove("hide-btn");
+      }
+    });
+  </script>
 </body>
 
 </html>

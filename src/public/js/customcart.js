@@ -24,7 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
       // Lấy thông tin sản phẩm từ DOM
   const productId = document.querySelector('.product-summary').getAttribute('data-product-id');
   const productName = document.querySelector('.product_title').innerText.trim();
-  const productImage = document.querySelector('.big_img img').src;
+  const productUrl = document.querySelector('.product_url').innerText.trim();
+  const productImage = document.querySelector('.big_img img').alt;
   const productPrice = Number(document.querySelector('.product_priece p').innerText.replace(/\D/g, ''));
   const productQuantity = Number(document.getElementById('soluong').value);
   const selectedSizeElement = document.querySelector('#choose-size li.active span');
@@ -34,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
     alert('Vui lòng chọn kích thước sản phẩm.');
     return;
   }
-
   // Tạo đối tượng sản phẩm
   const product = {
     sanpham_id: productId,
@@ -42,9 +42,9 @@ document.addEventListener('DOMContentLoaded', function() {
     sanpham_anh: productImage,
     sanpham_gia: productPrice,
     quantity: productQuantity,
-    sanpham_size: productSize
+    sanpham_size: productSize,
+    sanpham_url: productUrl,
   };
-
   if (isUserLoggedIn()) {
     // Người dùng đã đăng nhập, lưu giỏ hàng vào cơ sở dữ liệu
     saveCartToDatabase(product);
@@ -161,14 +161,14 @@ function renderCart(cart) {
       cartItem.innerHTML = `
         <td class="item_card_checkout">
           <div class="product-image">
-            <a href=""><img src="${item.sanpham_anh}" alt="" class="img-fluid"></a>
+            <a href="/chi-tiet-san-pham/${item.sanpham_url}"><img src="/uploads/${item.sanpham_anh}" alt="" class="img-fluid"></a>
             <div class="product-remove">
               <a href="#" class="remove" data-id="${item.sanpham_id}" data-size="${item.sanpham_size}">x</a>
             </div>
           </div>
           <div class="product-detail">
             <div class="name">
-              <a href="">${item.sanpham_ten}</a>
+              <a href="/chi-tiet-san-pham/${item.sanpham_url}">${item.sanpham_ten}</a>
               <dl class="variation">
                   ${sizeHtml}
                   <dt class="variation-thuonghieu">Thương hiệu:</dt>

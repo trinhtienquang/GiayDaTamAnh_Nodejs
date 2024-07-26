@@ -77,10 +77,13 @@ const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
 const userMenu = document.getElementById('user-menu');
   if (userToken && userInfo) {
+    const fullName = userInfo.userName.trim();
+    const nameParts = fullName.split(' ');
+    const lastName = nameParts.length > 0 ? nameParts[nameParts.length - 1] : '';
     userMenu.innerHTML = `
       <div id="dropdown-user" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="fa-regular fa-user" style="font-size: 20px; margin-right: 5px;">
-        </i> <span>Chào, ${userInfo.userName}</span>
+        </i> <span>Chào, ${lastName}</span>
       </div>
       <ul class="dropdown-menu" aria-labelledby="dropdown-user">
         <li><a class="dropdown-item" href="#">Quản lý tài khoản</a></li>
@@ -97,14 +100,9 @@ const userMenu = document.getElementById('user-menu');
 
   } else {
     userMenu.innerHTML = `
-      <div id="dropdown-user" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fa-regular fa-user" style="font-size: 20px; margin-right: 5px;">
-        </i>
-      </div>
-      <ul class="dropdown-menu" aria-labelledby="dropdown-user">
-        <li><a class="dropdown-item" href="/user/login">Đăng nhập</a></li>
-        <li><a class="dropdown-item" href="/user/register">Đăng ký</a></li>
-      </ul>
+        <a href="/user/login">
+          <i class="fa-regular fa-user" style="font-size: 20px; margin-right: 5px;"></i>
+        </a>
     `;
   }
 }

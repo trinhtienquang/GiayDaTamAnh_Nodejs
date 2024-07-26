@@ -6,11 +6,11 @@ const CartModel = {
     return await mysqlConnection.query(query, [userId]);
   },
   
-  addProductToCart: async (userId, productId, name, image, price, quantity, size) => {
-    const query = `INSERT INTO tbl_cart (user_id, sanpham_id, sanpham_ten, sanpham_anh, sanpham_gia, quantity, sanpham_size) 
-                   VALUES (?, ?, ?, ?, ?, ?, ?) 
+  addProductToCart: async (userId, productId, name, image, price, quantity, size, url) => {
+    const query = `INSERT INTO tbl_cart (user_id, sanpham_id, sanpham_ten, sanpham_anh, sanpham_gia, quantity, sanpham_size, sanpham_url) 
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?) 
                    ON DUPLICATE KEY UPDATE quantity = quantity + VALUES(quantity)`;
-    return await mysqlConnection.query(query, [userId, productId, name, image, price, quantity, size]);
+    return await mysqlConnection.query(query, [userId, productId, name, image, price, quantity, size, url]);
   },
   
   removeProductFromCart: async (userId, productId, size) => {

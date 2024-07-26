@@ -18,7 +18,7 @@
       <div class="col-xs-12 col-md-6">
         <div class="images">
           <div class="big_img">
-            <img src="/uploads/<%=product.sanpham_anh%>" alt="" class="img-fluid" style="max-height: 575px; width: 100%;">
+            <img src="/uploads/<%=product.sanpham_anh%>" alt="<%=product.sanpham_anh%>" class="img-fluid" style="max-height: 575px; width: 100%;">
           </div>
           <div class="small_img">
             <div class="slider_img">
@@ -33,6 +33,7 @@
       </div>
       <div class="col-xs-12 col-md-5 col-md-offset-1">
         <div class="product-summary" data-product-id="<%= product.sanpham_id %>">
+          <p class="product_url" style="display: none;"><%=slugify(product.sanpham_ten)%></p>
           <h1 class="product_title"><%=product.sanpham_ten%> <%=product.sanpham_ma%></h1>
           <div class="product_details">
             <%-product.sanpham_gioithieu%>

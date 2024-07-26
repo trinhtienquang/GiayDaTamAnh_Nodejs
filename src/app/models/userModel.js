@@ -1,9 +1,9 @@
 const db = require('../../config/db');
 
 const User = {
-  findByPhone: (phone, callback) => {
-    const query = 'SELECT * FROM tbl_user WHERE phone = ?';
-    db.query(query, [phone], (error, results) => {
+  findByEmail: (email, callback) => {
+    const query = 'SELECT * FROM tbl_user WHERE email = ?';
+    db.query(query, [email], (error, results) => {
       if (error) {
         return callback(error, null);
       }
@@ -14,9 +14,9 @@ const User = {
     });
   },
   
-  create: (phone, password, callback) => {
-    const query = 'INSERT INTO tbl_user (phone, password) VALUES (?, ?)';
-    db.query(query, [phone, password], (error, results) => {
+  create: (user_name, phone, email, password, callback) => {
+    const query = 'INSERT INTO tbl_user (user_name, phone, email, password) VALUES (?, ?, ?, ?)';
+    db.query(query, [user_name, phone,email, password], (error, results) => {
       if (error) {
         return callback(error, null);
       }

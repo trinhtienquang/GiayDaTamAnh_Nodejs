@@ -13,9 +13,9 @@ class CartController {
 
   static async addProductToCart(req, res) {
     const userId = req.user.userId;
-    const { sanpham_id, sanpham_ten, sanpham_anh, sanpham_gia, quantity, sanpham_size } = req.body;
+    const { sanpham_id, sanpham_ten, sanpham_anh, sanpham_gia, quantity, sanpham_size, sanpham_url } = req.body;
     try {
-      await CartModel.addProductToCart(userId, sanpham_id, sanpham_ten, sanpham_anh, sanpham_gia, quantity, sanpham_size);
+      await CartModel.addProductToCart(userId, sanpham_id, sanpham_ten, sanpham_anh, sanpham_gia, quantity, sanpham_size, sanpham_url);
       res.json({ success: true });
     } catch (error) {
       res.json({ success: false, message: error.message });

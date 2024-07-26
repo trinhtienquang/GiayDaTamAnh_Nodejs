@@ -363,6 +363,14 @@ ol {
         cursor: pointer;
         position: relative;
 
+        a {
+          transition: 0.1s color;
+
+          &:hover {
+            color: #ddba76;
+          }
+        }
+
         .dropdown-menu {
           position: absolute !important;
           inset: 10px 0px auto auto !important;

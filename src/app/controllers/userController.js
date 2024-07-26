@@ -12,36 +12,41 @@ exports.renderLoginForm = (req, res) => {
 };
 
 exports.register = (req, res) => {
-  const { phone, password } = req.body;
+  const { user_name, phone, email, password, re_password } = req.body;
 
-  User.findByPhone(phone, (error, user) => {
+  User.findByEmail(email, (error, user) => {
     if (error) {
       return res.status(500).json({ message: 'Lỗi máy chủ' });
     }
     if (user) {
-      return res.status(400).json({ message: 'số điện thoại đã tồn tại' });
+      return res.status(400).json({ message: 'email đã tồn tại' });
     }
-
-    bcrypt.hash(password, 10, (err, hashedPassword) => {
-      if (err) {
-        console.error('Error hashing password:', err);
-        return res.status(500).json({ message: 'Lỗi mã hóa mật khẩu' });
-      }
-
-      User.create(phone, hashedPassword, (error, results) => {
-        if (error) {
-          return res.status(500).json({ message: 'Lỗi máy chủ' });
+    if(password === re_password){
+      bcrypt.hash(password, 10, (err, hashedPassword) => {
+        if (err) {
+          console.error('Error hashing password:', err);
+          return res.status(500).json({ message: 'Lỗi mã hóa mật khẩu' });
         }
-        res.status(201).json({ message: 'Đăng ký thành công' });
+  
+        User.create(user_name, phone, email, hashedPassword, (error, results) => {
+          if (error) {
+            return res.status(500).json({ message: 'Lỗi máy chủ' });
+          }
+          alert('Đăng ký thành công')
+          res.redirect('/user/login')
+        });
       });
-    });
+    }else{
+      return res.status(500).json({ message: 'xác nhận mật khẩu không trùng khớp' });
+    }
+    
   });
 };
 
 exports.login = (req, res) => {
-  const { phone, password } = req.body;
+  const { email, password } = req.body;
 
-  User.findByPhone(phone, (error, user) => {
+  User.findByEmail(email, (error, user) => {
     if (error) {
       console.error('Error finding user:', error);
       return res.status(500).json({message: 'Lỗi máy chủ'});

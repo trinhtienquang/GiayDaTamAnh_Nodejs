@@ -254,6 +254,10 @@ ol {
       padding: 12px 0 0 5px;
       cursor: pointer;
       position: relative; }
+      .header .midle_header .container .user a {
+        transition: 0.1s color; }
+        .header .midle_header .container .user a:hover {
+          color: #ddba76; }
       .header .midle_header .container .user .dropdown-menu {
         position: absolute !important;
         inset: 10px 0px auto auto !important;
