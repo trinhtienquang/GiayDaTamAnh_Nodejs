@@ -3,6 +3,17 @@ const express = require('express');
 const bodyparser = require('body-parser');
 require('dotenv').config();
 const app = express();
+const flash = require('connect-flash');
+const session = require('express-session');
+
+app.use(session({
+  secret: process.env.JWT_SECRET_KEY,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
+
+app.use(flash());
 
 var menuController = require('../src/app/controllers/menuController');
 var footerController = require('../src/app/controllers/footerController');

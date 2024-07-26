@@ -102,7 +102,12 @@
   </form> -->
   <div class="container-fluid p-0">
     <div class="row">
-      <div class="col-7">
+      <div class="col-7 p-0">
+        <% if (messages.info) { %>
+        <div class="alert alert-info"><%= messages.info %></div>
+        <% }else if(messages.err){ %>
+        <div class="alert alert-danger"><%= messages.err %></div>
+        <%}%>
         <div class="container px-5 mt-5">
           <div class="title">Thế giới giày da Tâm Anh</div>
           <form id="register-form" action="" method="POST">
