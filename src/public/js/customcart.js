@@ -4,6 +4,21 @@ function isUserLoggedIn() {
   return !!localStorage.getItem('userToken');
 }
 // isUserLoggedIn()
+function showToast(type, icon, title, text) {
+  const notifications = document.querySelector('.notifications'); // Giả sử bạn có một container để chứa các thông báo
+  const newToast = document.createElement('div');
+  newToast.className = `toast ${type}`;
+  newToast.innerHTML = `
+    <i class="${icon}"></i>
+    <div class="content">
+      <div class="title">${title}</div>
+      <span>${text}</span>
+    </div>
+    <i class="fa-solid fa-xmark" onclick="(this.parentElement).remove()"></i>
+  `;
+  notifications.appendChild(newToast);
+  newToast.timeOut = setTimeout(() => newToast.remove(), 5000);
+}
 document.addEventListener('DOMContentLoaded', function() {
   //luôn cập nhật giỏ hàng mỗi khi tải lại trang hoặc sang trang khác
   updateCartUI();
@@ -32,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const productSize = selectedSizeElement ? selectedSizeElement.innerText : "N/A";
 
   if (document.querySelector('#choose-size') && !selectedSizeElement) {
-    alert('Vui lòng chọn kích thước sản phẩm.');
+    showToast('warning', 'fa-solid fa-triangle-exclamation', 'Cảnh báo', 'Vui lòng chọn size sản phẩm.')
     return;
   }
   // Tạo đối tượng sản phẩm
@@ -62,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     // Kiểm tra sản phẩm đã tồn tại trong giỏ hàng hay chưa
-    const existingProductIndex = cart.findIndex(item => item.id === product.id && item.size === product.size);
+    const existingProductIndex = cart.findIndex(item => item.sanpham_id === product.sanpham_id && item.sanpham_size === product.sanpham_size);
     if (existingProductIndex > -1) {
       // Cập nhật số lượng nếu sản phẩm đã tồn tại
       cart[existingProductIndex].quantity += product.quantity;
@@ -73,6 +88,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Lưu giỏ hàng vào localStorage
     localStorage.setItem('cart', JSON.stringify(cart));
+    showToast('sucess', 'fa-solid fa-check-circle', 'Thành công', 'Sản phẩm đã được thêm vào giỏ hàng.')
+
   }
 
   // Hàm lưu giỏ hàng vào cơ sở dữ liệu
@@ -89,9 +106,10 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(data => {
       if (data.success) {
         // console.log(data)
-        console.log('Product added to cart in database');
+        showToast('sucess', 'fa-solid fa-check-circle', 'Thành công', 'Sản phẩm đã được thêm vào giỏ hàng.')
       } else {
-        console.error('Error adding product to cart in database', data.message);
+        // console.error('Error adding product to cart in database', data.message);
+        showToast('error', 'fa-solid fa-circle-exclamation', 'Thất bại', 'Có lỗi xảy ra.')
       }
     })
     .catch(error => {
@@ -114,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
       .then(data => {
         if (data.success) {
           renderCart(data.cart);
-          console.log(data)
+          // console.log(data)
         } else {
           console.error('Error fetching cart from database', data.message);
         }
@@ -204,6 +222,8 @@ function renderCart(cart) {
       const productId = this.getAttribute('data-id');
       const productSize = this.getAttribute('data-size');
       removeFromCart(productId, productSize);
+      console.log('Product removed from cart in localstorage');
+      showToast('sucess', 'fa-solid fa-check-circle', 'Thành công', 'Sản phẩm đã được xóa khỏi giỏ hàng.')
     });
   });
 }
@@ -227,10 +247,12 @@ function renderCart(cart) {
       updateCartUI();
       } else {
       console.error('Error removing product from cart in database', data.message);
+      showToast('error', 'fa-solid fa-circle-exclamation', 'Thất bại', 'Có lỗi xảy ra.')
       }
       })
       .catch(error => {
       console.error('Error removing product from cart in database', error);
+      showToast('error', 'fa-solid fa-circle-exclamation', 'Thất bại', 'Có lỗi xảy ra.')
       });
     }else{
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -238,7 +260,6 @@ function renderCart(cart) {
       localStorage.setItem('cart', JSON.stringify(cart));
       updateCartUI();
     }
-    
   }
 
   // Cập nhật giao diện giỏ hàng khi tải trang

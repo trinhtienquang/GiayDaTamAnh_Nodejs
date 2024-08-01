@@ -1,0 +1,225 @@
+<%- include('partials/header') %>
+<div class="notifications">
+
+</div>
+<div class="container">
+  <div class="row content-donhang">
+    <div class="col-xs-12 col-sm-7">
+      <form action="" class="form-checkout">
+        <h3>Thông tin giao hàng</h3>
+        <input type="text" name="" id="" class="form-control" placeholder="Tên người nhận">
+        <input type="text" name="" id="" class="form-control" placeholder="Địa chỉ nhận hàng">
+        <input type="text" name="" id="" class="form-control" placeholder="Số điện thoại*">
+        <textarea name="" id="" class="form-control" placeholder="Chú thích thêm..."></textarea>
+        <div class="action-checkout d-flex justify-content-end">
+          <button>ĐẶT HÀNG</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-xs-12 col-sm-5">
+      <div class="shopping_cart_checkout">
+        <div class="content_shopping_cart">
+          <div class="title">
+            <label for="">Thông tin đơn hàng </label>
+            <p class="ms-1 mb-0">(<span class="count">0</span> sản phẩm )</p>
+          </div>
+          <div class="content_cart">
+            <div class="list_item">
+              <div class="content_scroll_cart">
+                <table>
+                  <tbody id="cart-items-body">
+                    <!-- <tr class="cart_item">
+                      <td class="item_card_checkout">
+                        <div class="product-image">
+                          <a href=""><img src="../public/images/giayda/ava-giay-luoi-hoa-tiet-dan-cheo-GNTA1652-N-1.jpg" alt="" class="img-fluid"></a>
+                          <div class="product-remove">
+                            <a href="" class="remove">x</a>
+                          </div>
+                        </div>
+                        <div class="product-detail">
+                          <div class="name">
+                            <a href="">Giày lười da nam đục lỗ caro màu nâu GNTA1652-N</a>
+                            <dl class="variation">
+                              <dt class="variation-size">Size:</dt>
+                              <dd class="variation-size">
+                                <p>39</p>
+                              </dd>
+                              <dt class="variation-thuonghieu">Thương hiệu:</dt>
+                              <dd class="variation-thuonghieu">
+                                <p>Đồ Da Tâm Anh</p>
+                              </dd>
+                            </dl>
+                          </div>
+                          <div class="price_quantity">
+                            <div class="product-quantity">
+                              <span class="btn-minus" onclick="minusHandleClick()">
+                                <i class="ph-minus"></i>
+                              </span>
+                              <input type="text" name="soluong" id="soluong" value="1">
+                              <span class="btn-plus" onclick="plusHandleClick()">
+                                <i class="ph-plus"></i>
+                              </span>
+                            </div>
+                            <div class="product-price">820000₫</div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr> -->
+                  </tbody>
+                </table>
+              </div>
+              <div class="bottom_giohang">
+                <div class="coupon">
+                  <div class="coupon-content">
+                    <input type="text" name="" id="coupon-code" placeholder="Nhập mã giảm giá">
+                    <input type="submit" name="" id="" class="button" value="Áp dụng">
+                  </div>
+                </div>
+                <div class="checkout">
+                  <ul>
+                    <li>
+                      <label for="">Giá trị sản phẩm:</label>
+                      <span class="amount">820000</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="tongtien">
+                  <li>
+                    <label for="">Tổng tiền</label>
+                    <span class="amount">820000</span>
+                  </li>
+                </div>
+                <div class="note_checkout">
+                  <div class="shipping">Miễn phí vận chuyển</div>
+                  <div class="">
+                    Thanh toán tiền mặt khi nhận hàng
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (isUserLoggedIn()) {
+      const token = localStorage.getItem('userToken');
+      // Người dùng đã đăng nhập, lấy giỏ hàng từ cơ sở dữ liệu
+      fetch('/api/cart', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` // Gửi token với "Bearer "
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+
+          if (data.success) {
+            renderCart(data.cart);
+          } else {
+            console.error('Error fetching cart from database', data.message);
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching cart from database', error);
+        });
+    } else {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      renderCart(cart)
+    }
+  })
+
+
+  function isUserLoggedIn() {
+    // console.log(localStorage.getItem('userToken'))
+    // Giả sử bạn có một token hoặc giá trị trong localStorage để kiểm tra trạng thái đăng nhập
+    return !!localStorage.getItem('userToken');
+  }
+
+  function renderCart(cart) {
+    const cartContainer = document.querySelector('#cart-items-body');
+    const bottomCart = document.querySelector('.bottom_giohang');
+    cartContainer.innerHTML = '';
+
+    let totalAmount = 0; //biến để tính tổng tiền
+    let totalQuantity = 0; //biến để tính tổng số lượng sản phẩm
+    if (cart.length === 0) {
+      // Nếu giỏ hàng rỗng, hiển thị thông báo
+      cartContainer.innerHTML = '<p>Chưa có sản phẩm trong giỏ hàng.<p>';
+      bottomCart.style.display = 'none'; // Ẩn phần bottom_giohang khi giỏ hàng rỗng
+    } else {
+      cart.forEach(item => {
+        console.log(item)
+        totalAmount += item.sanpham_gia * item.quantity;
+        totalQuantity += item.quantity;
+
+        const cartItem = document.createElement('tr');
+        cartItem.classList.add('cart_item');
+
+        let sizeHtml = '';
+        if (item.size !== "N/A") {
+          sizeHtml = `
+          <dt class="variation-size">Size:</dt>
+          <dd class="variation-size">
+            <p>${item.sanpham_size}</p>
+          </dd>
+        `;
+        }
+        cartItem.innerHTML = `
+        <td class="item_card_checkout">
+          <div class="product-image">
+            <a href="/chi-tiet-san-pham/${item.sanpham_url}"><img src="/uploads/${item.sanpham_anh}" alt="" class="img-fluid"></a>
+            <div class="product-remove">
+              <a href="#" class="remove" data-id="${item.sanpham_id}" data-size="${item.sanpham_size}">x</a>
+            </div>
+          </div>
+          <div class="product-detail">
+            <div class="name">
+              <a href="/chi-tiet-san-pham/${item.sanpham_url}">${item.sanpham_ten}</a>
+              <dl class="variation">
+                  ${sizeHtml}
+                  <dt class="variation-thuonghieu">Thương hiệu:</dt>
+                    <dd class="variation-thuonghieu">
+                      <p>Đồ Da Tâm Anh</p>
+                    </dd>
+                  </dl>
+              </dl>
+            </div>
+            <div class="price_quantity">
+              <div class="product-quantity">x${item.quantity}</div>
+              <div class="product-price">${Number(item.sanpham_gia).toLocaleString('vi-VN')}₫</div>
+            </div>
+          </div>
+        </td>
+      `;
+
+        cartContainer.appendChild(cartItem);
+      });
+      bottomCart.style.display = 'block'; // Hiển thị bottom_giohang khi có sản phẩm trong giỏ hàng
+    }
+
+    document.querySelector('.shopping_cart_checkout .checkout .amount').innerText = `${totalAmount.toLocaleString('vi-VN')}₫`;
+    document.querySelector('.shopping_cart_checkout .tongtien .amount').innerText = `${totalAmount.toLocaleString('vi-VN')}₫`;
+
+    document.querySelector('.shopping_cart_checkout .title .count').innerText = `${totalQuantity}`
+    console.log(document.querySelector('.shopping_cart_checkout .title .count').innerText)
+
+    // Thêm sự kiện cho nút "xóa"
+    document.querySelectorAll('.product-remove .remove').forEach(button => {
+      button.addEventListener('click', function(event) {
+        event.preventDefault();
+        const productId = this.getAttribute('data-id');
+        const productSize = this.getAttribute('data-size');
+        removeFromCart(productId, productSize);
+        console.log('Product removed from cart in localstorage');
+        showToast('sucess', 'fa-solid fa-check-circle', 'Thành công', 'Sản phẩm đã được xóa khỏi giỏ hàng.')
+      });
+    });
+  }
+</script>
+<%- include('partials/footer') %>

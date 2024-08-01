@@ -1,0 +1,334 @@
+.content-donhang {
+  margin: 100px auto;
+
+  .form-checkout {
+    margin-top: 30px;
+    padding-right: 40px;
+
+    input {
+      margin-bottom: 12px;
+      background: #f7f7f7;
+      padding: 11px 15px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    textarea {
+      margin-bottom: 12px;
+      background: #f7f7f7;
+      border-radius: 5px;
+      border: none;
+      padding: 20px;
+    }
+
+    .action-checkout {
+      overflow: auto;
+      margin: 20px auto 0 auto;
+      clear: both;
+      float: left;
+      width: 100%;
+
+      button {
+        background: #444a59 !important;
+        line-height: 1;
+        color: #fff;
+        border: none;
+        padding: 20px 70px 14px 70px;
+        letter-spacing: 4.2px;
+        width: 300px;
+        max-width: 100%;
+        font-size: 14px;
+        font-family: "iCiel Fester Semi-Condensed";
+      }
+    }
+  }
+
+  .shopping_cart_checkout {
+    background: #eeeeee;
+    padding: 30px 50px;
+
+    .content_shopping_cart {
+      // overflow-x: hidden;
+      height: 100%;
+
+      .title {
+        color: #444a59;
+        display: flex;
+        align-items: center;
+
+        label {
+          font-family: 'iCiel Fester Semi-Condensed';
+          font-size: 18px;
+        }
+
+        span {
+          margin-top: 0;
+          font-size: 14px;
+          margin: 0px 0 0 5px;
+        }
+      }
+
+      .content_cart {
+        padding: 28px 0 30px;
+        height: 100%;
+
+        .list_item {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          height: 100%;
+
+          .content_scroll_cart {
+            overflow-x: hidden;
+
+            table {
+              padding: 0;
+              border: none;
+
+              .cart_item {
+                border: none;
+
+                .item_card_checkout {
+                  margin: 0 0 25px;
+                  display: flex;
+                  padding: 0 !important;
+
+                  .product-image {
+                    flex: 0 0 110px;
+                    margin-right: 15px;
+                    position: relative;
+
+                    a {
+                      display: block;
+
+                      img {
+                        width: 100%;
+                        max-width: unset !important;
+                      }
+                    }
+
+                    .product-remove {
+                      a {
+                        display: block;
+
+                        &.remove {
+                          position: absolute;
+                          top: 1px;
+                          left: 1px;
+                          background: #fff;
+                          border-radius: 50%;
+                          color: #ddba76 !important;
+                          font-size: 15px !important;
+                          line-height: 13px;
+                          text-align: center;
+                          width: 15px;
+                          height: 15px;
+                          transition: 0.1s all;
+
+                          &:hover {
+                            color: #fff !important;
+                            background: #ddba76;
+                          }
+                        }
+                      }
+                    }
+                  }
+
+                  .product-detail {
+                    width: 100%;
+                    margin-left: auto;
+
+                    .name {
+                      font-size: 14px;
+                      color: #6f7175;
+                      line-height: normal;
+                      margin-bottom: 10px;
+
+                      a {
+                        transition: 0.1s color;
+
+                        &:hover {
+                          color: #ddba76;
+                        }
+                      }
+
+                      .variation {
+                        margin: 5px 0 10px;
+
+                        .variation-size {
+                          margin-right: 5px;
+                          color: #6f7175;
+                          font-weight: 400;
+                          float: left;
+
+                          p {
+                            background: #dbdbdb;
+                            color: #444a59;
+                            padding: 0 5px;
+                          }
+                        }
+                      }
+                    }
+
+                    .price_quantity {
+                      display: flex;
+                      align-items: center;
+                      width: 100%;
+
+                      .product-quantity {
+                        display: flex;
+                        align-items: center;
+
+                        span {
+                          color: #a8a8a8;
+                          cursor: pointer;
+                          font-size: 16px;
+                          display: flex;
+
+                          i {
+                            font-size: 12px;
+                          }
+                        }
+
+                        input {
+                          background: none;
+                          border: none;
+                          width: 30px !important;
+                          text-align: center;
+                          height: 15px;
+                          font-size: 13px;
+                        }
+                      }
+
+                      .product-price {
+                        margin-left: auto;
+                        color: #444a59;
+                        font-family: 'VNF-Futura';
+                        display: flex;
+                        flex-direction: column-reverse;
+                        text-align: right;
+                        font-weight: 700;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          .bottom_giohang {
+            .coupon {
+              padding: 20px 0;
+              border-top: 1px solid #e4e3e3;
+              border-bottom: 1px solid #e4e3e3;
+              margin: 20px 0;
+              width: 100%;
+
+              .coupon-content {
+                position: relative;
+
+                #coupon-code {
+                  width: 100%;
+                  padding: 12px 13px 12px 20px;
+                  border: none;
+                  color: #c6bdbd;
+                  font-size: 15px;
+                  line-height: 1;
+                }
+
+                .button {
+                  padding: 18px 30px 12px 30px;
+                  margin-left: 10px;
+                  border-radius: unset;
+                  background: #ddba76;
+                  color: #fff;
+                  font-size: 14px;
+                  font-family: 'iCiel Fester Semi-Condensed';
+                  position: absolute;
+                  right: 0;
+                  top: 0;
+                  letter-spacing: 2px;
+                  line-height: 1;
+                  border: none;
+                }
+              }
+            }
+
+            .checkout {
+              padding-bottom: 20px;
+              margin-bottom: 20px;
+              border-bottom: 1px solid #e4e3e3;
+              float: left;
+              clear: both;
+              width: 100%;
+
+              li {
+                margin-bottom: 5px;
+                list-style: none;
+                text-align: left;
+                width: 100%;
+                display: flex;
+                align-items: flex-end;
+
+                span {
+                  margin-left: auto;
+                }
+              }
+            }
+
+            .tongtien {
+              font-size: 18px;
+              clear: both;
+              width: 100%;
+              font-weight: 700;
+
+              li {
+                list-style: none;
+                text-align: left;
+                width: 100%;
+                display: flex;
+                align-items: flex-end;
+
+                span {
+                  margin-left: auto;
+                  font-weight: 700;
+                }
+              }
+            }
+
+            .note_checkout {
+              width: 39%;
+              text-align: right;
+              margin-left: auto;
+              font-size: 15px;
+
+              .shipping {
+                color: #ddba76;
+                margin: 0 0 10px;
+                font-style: italic;
+              }
+            }
+
+            .btn_muahang {
+              margin-top: 30px;
+              clear: both;
+
+              a {
+                padding: 11px 15px !important;
+                background: #444a59 !important;
+                font-size: 14px !important;
+                font-family: 'iCiel Fester Semi-Condensed';
+                letter-spacing: 4.2px;
+                border-radius: unset !important;
+                display: block;
+                max-width: 100%;
+                text-align: center;
+                color: #fff;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
