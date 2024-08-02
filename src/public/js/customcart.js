@@ -148,85 +148,85 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
 // Hàm render giỏ hàng
-function renderCart(cart) {
-  const cartContent = document.querySelector('.content_scroll_cart tbody');
-  const bottomCart = document.querySelector('.bottom_giohang');
-  cartContent.innerHTML = '';
+  function renderCart(cart) {
+    const cartContent = document.querySelector('.content_scroll_cart tbody');
+    const bottomCart = document.querySelector('.bottom_giohang');
+    cartContent.innerHTML = '';
 
-  let totalAmount = 0;   //biến để tính tổng tiền
-  let totalQuantity = 0; //biến để tính tổng số lượng sản phẩm
-  if (cart.length === 0) {
-    // Nếu giỏ hàng rỗng, hiển thị thông báo
-    cartContent.innerHTML = '<p>Chưa có sản phẩm trong giỏ hàng.<p>';
-    bottomCart.style.display = 'none'; // Ẩn phần bottom_giohang khi giỏ hàng rỗng
-  } else {
-    cart.forEach(item => {
-      totalAmount += item.sanpham_gia * item.quantity;
-      totalQuantity += item.quantity;
+    let totalAmount = 0;   //biến để tính tổng tiền
+    let totalQuantity = 0; //biến để tính tổng số lượng sản phẩm
+    if (cart.length === 0) {
+      // Nếu giỏ hàng rỗng, hiển thị thông báo
+      cartContent.innerHTML = '<p>Chưa có sản phẩm trong giỏ hàng.<p>';
+      bottomCart.style.display = 'none'; // Ẩn phần bottom_giohang khi giỏ hàng rỗng
+    } else {
+      cart.forEach(item => {
+        totalAmount += item.sanpham_gia * item.quantity;
+        totalQuantity += item.quantity;
 
-      const cartItem = document.createElement('tr');
-      cartItem.classList.add('cart_item');
+        const cartItem = document.createElement('tr');
+        cartItem.classList.add('cart_item');
 
-      let sizeHtml = '';
-      if (item.size !== "N/A") {
-        sizeHtml = `
-          <dt class="variation-size">Size:</dt>
-          <dd class="variation-size">
-            <p>${item.sanpham_size}</p>
-          </dd>
+        let sizeHtml = '';
+        if (item.size !== "N/A") {
+          sizeHtml = `
+            <dt class="variation-size">Size:</dt>
+            <dd class="variation-size">
+              <p>${item.sanpham_size}</p>
+            </dd>
+          `;
+        }
+        cartItem.innerHTML = `
+          <td class="item_card_checkout">
+            <div class="product-image">
+              <a href="/chi-tiet-san-pham/${item.sanpham_url}"><img src="/uploads/${item.sanpham_anh}" alt="" class="img-fluid"></a>
+              <div class="product-remove">
+                <a href="#" class="remove" data-id="${item.sanpham_id}" data-size="${item.sanpham_size}">x</a>
+              </div>
+            </div>
+            <div class="product-detail">
+              <div class="name">
+                <a href="/chi-tiet-san-pham/${item.sanpham_url}">${item.sanpham_ten}</a>
+                <dl class="variation">
+                    ${sizeHtml}
+                    <dt class="variation-thuonghieu">Thương hiệu:</dt>
+                      <dd class="variation-thuonghieu">
+                        <p>Đồ Da Tâm Anh</p>
+                      </dd>
+                    </dl>
+                </dl>
+              </div>
+              <div class="price_quantity">
+                <div class="product-quantity">x${item.quantity}</div>
+                <div class="product-price">${Number(item.sanpham_gia).toLocaleString('vi-VN')}₫</div>
+              </div>
+            </div>
+          </td>
         `;
-      }
-      cartItem.innerHTML = `
-        <td class="item_card_checkout">
-          <div class="product-image">
-            <a href="/chi-tiet-san-pham/${item.sanpham_url}"><img src="/uploads/${item.sanpham_anh}" alt="" class="img-fluid"></a>
-            <div class="product-remove">
-              <a href="#" class="remove" data-id="${item.sanpham_id}" data-size="${item.sanpham_size}">x</a>
-            </div>
-          </div>
-          <div class="product-detail">
-            <div class="name">
-              <a href="/chi-tiet-san-pham/${item.sanpham_url}">${item.sanpham_ten}</a>
-              <dl class="variation">
-                  ${sizeHtml}
-                  <dt class="variation-thuonghieu">Thương hiệu:</dt>
-                    <dd class="variation-thuonghieu">
-                      <p>Đồ Da Tâm Anh</p>
-                    </dd>
-                  </dl>
-              </dl>
-            </div>
-            <div class="price_quantity">
-              <div class="product-quantity">x${item.quantity}</div>
-              <div class="product-price">${Number(item.sanpham_gia).toLocaleString('vi-VN')}₫</div>
-            </div>
-          </div>
-        </td>
-      `;
 
-      cartContent.appendChild(cartItem);
+        cartContent.appendChild(cartItem);
+      });
+      bottomCart.style.display = 'block'; // Hiển thị bottom_giohang khi có sản phẩm trong giỏ hàng
+    }
+
+    document.querySelector('.checkout .amount').innerText = `${totalAmount.toLocaleString('vi-VN')}₫`;
+    document.querySelector('.tongtien .amount').innerText = `${totalAmount.toLocaleString('vi-VN')}₫`;
+
+    document.querySelector('.cart .count').innerText = `${totalQuantity}`
+    document.querySelector('.title .count').innerText = `${totalQuantity}`
+
+    // Thêm sự kiện cho nút "xóa"
+    document.querySelectorAll('.product-remove .remove').forEach(button => {
+      button.addEventListener('click', function(event) {
+        event.preventDefault();
+        const productId = this.getAttribute('data-id');
+        const productSize = this.getAttribute('data-size');
+        removeFromCart(productId, productSize);
+        console.log('Product removed from cart in localstorage');
+        showToast('sucess', 'fa-solid fa-check-circle', 'Thành công', 'Sản phẩm đã được xóa khỏi giỏ hàng.')
+      });
     });
-    bottomCart.style.display = 'block'; // Hiển thị bottom_giohang khi có sản phẩm trong giỏ hàng
   }
-
-  document.querySelector('.checkout .amount').innerText = `${totalAmount.toLocaleString('vi-VN')}₫`;
-  document.querySelector('.tongtien .amount').innerText = `${totalAmount.toLocaleString('vi-VN')}₫`;
-
-  document.querySelector('.cart .count').innerText = `${totalQuantity}`
-  document.querySelector('.title .count').innerText = `${totalQuantity}`
-
-  // Thêm sự kiện cho nút "xóa"
-  document.querySelectorAll('.product-remove .remove').forEach(button => {
-    button.addEventListener('click', function(event) {
-      event.preventDefault();
-      const productId = this.getAttribute('data-id');
-      const productSize = this.getAttribute('data-size');
-      removeFromCart(productId, productSize);
-      console.log('Product removed from cart in localstorage');
-      showToast('sucess', 'fa-solid fa-check-circle', 'Thành công', 'Sản phẩm đã được xóa khỏi giỏ hàng.')
-    });
-  });
-}
 
   // Hàm xóa sản phẩm khỏi giỏ hàng
   function removeFromCart(productId, productSize) {
@@ -264,14 +264,12 @@ function renderCart(cart) {
       updateCartCheckoutUI();
     }
   }
-
+  
   // Cập nhật giao diện giỏ hàng khi tải trang
   updateCartUI();
-  updateCartCheckoutUI();
+})
 
-});
-
-//==========Tăng giảm số lượng sản phẩm==============
+// ==========Tăng giảm số lượng sản phẩm==============
 let amountElement = document.getElementById('soluong');
 let amount = amountElement.value;
 
@@ -311,4 +309,3 @@ const sizeItems = document.querySelectorAll('#choose-size li');
     });
   });
 
-  

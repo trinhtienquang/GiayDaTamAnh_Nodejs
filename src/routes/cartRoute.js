@@ -12,4 +12,6 @@ router.post('/cart', verifyToken, CartController.addProductToCart);
 // Xóa sản phẩm khỏi giỏ hàng
 router.delete('/cart/:productId', verifyToken, CartController.removeProductFromCart);
 
+router.post('/cart/update-quantity', verifyToken, CartController.updateQuantity);
+
 module.exports = router;

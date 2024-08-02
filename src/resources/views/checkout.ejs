@@ -192,7 +192,15 @@
               </dl>
             </div>
             <div class="price_quantity">
-              <div class="product-quantity">x${item.quantity}</div>
+              <div class="product-quantity">
+                 <span class="btn-minus" onclick="minusHandleClick1(${item.sanpham_id})">
+                    <i class="ph-minus"></i>
+                  </span>
+                  <input type="text" name="soluong" id="soluong-${item.sanpham_id}" value="${item.quantity}">
+                  <span class="btn-plus" onclick="plusHandleClick1(${item.sanpham_id})">
+                    <i class="ph-plus"></i>
+                  </span>
+                </div>
               <div class="product-price">${Number(item.sanpham_gia).toLocaleString('vi-VN')}₫</div>
             </div>
           </div>
@@ -208,7 +216,6 @@
     document.querySelector('.shopping_cart_checkout .tongtien .amount').innerText = `${totalAmount.toLocaleString('vi-VN')}₫`;
 
     document.querySelector('.shopping_cart_checkout .title .count').innerText = `${totalQuantity}`
-    console.log(document.querySelector('.shopping_cart_checkout .title .count').innerText)
 
     // Thêm sự kiện cho nút "xóa"
     document.querySelectorAll('.product-remove .remove').forEach(button => {
@@ -221,6 +228,74 @@
         showToast('sucess', 'fa-solid fa-check-circle', 'Thành công', 'Sản phẩm đã được xóa khỏi giỏ hàng.')
       });
     });
+  }
+
+  function updateCartQuantity(sanpham_id, quantity) {
+    if (isUserLoggedIn()) {
+      // Người dùng đã đăng nhập, cập nhật giỏ hàng trong cơ sở dữ liệu
+      fetch(`/api/cart/update-quantity`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('userToken')}`
+          },
+          body: JSON.stringify({
+            sanpham_id,
+            quantity
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            // console.log(data)
+            updateCartCheckoutUI();
+            showToast('sucess', 'fa-solid fa-check-circle', 'Thành công', 'Sản phẩm đã được cập nhât.')
+          } else {
+            // console.error('Error adding product to cart in database', data.message);
+            showToast('error', 'fa-solid fa-circle-exclamation', 'Thất bại', 'Có lỗi xảy ra.')
+          }
+        })
+        .catch(error => {
+          console.error('Error updating cart', error);
+        });
+    } else {
+      // Người dùng chưa đăng nhập, cập nhật giỏ hàng trong localStorage
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      // console.log('Cart before update:', cart);
+      // console.log('Updating item with id:', sanpham_id, 'to quantity:', quantity);
+      const itemIndex = cart.findIndex(function(item) {
+        // console.log('Checking item:', item);
+        return item.sanpham_id === sanpham_id.toString();
+      });
+
+      if (itemIndex !== -1) {
+        cart[itemIndex].quantity = quantity;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        console.log('Cart updated in localStorage');
+        renderCartCheckOut(cart)
+        showToast('sucess', 'fa-solid fa-check-circle', 'Thành công', 'Sản phẩm đã được cập nhât.')
+      } else {
+        console.error('Item not found in cart');
+      }
+    }
+  }
+
+  function minusHandleClick1(sanpham_id) {
+    const quantityInput = document.querySelector(`#soluong-${sanpham_id}`);
+    let quantity = parseInt(quantityInput.value);
+    if (quantity > 1) {
+      quantity--;
+      quantityInput.value = quantity;
+      updateCartQuantity(sanpham_id, quantity);
+    }
+  }
+
+  function plusHandleClick1(sanpham_id) {
+    const quantityInput = document.querySelector(`#soluong-${sanpham_id}`);
+    let quantity = parseInt(quantityInput.value);
+    quantity++;
+    quantityInput.value = quantity;
+    updateCartQuantity(sanpham_id, quantity);
   }
 </script>
 <%- include('partials/footer') %>

@@ -16,6 +16,11 @@ const CartModel = {
   removeProductFromCart: async (userId, productId, size) => {
     const query = 'DELETE FROM tbl_cart WHERE user_id = ? AND sanpham_id = ? AND sanpham_size = ?';
     return await mysqlConnection.query(query, [userId, productId, size]);
+  },
+
+  updateQuatity: async (userId, productId, quantity) => {
+    const query = 'UPDATE tbl_cart SET quantity = ? WHERE user_id = ? AND sanpham_id = ?'
+    return await mysqlConnection.query(query, [quantity, userId, productId]);
   }
 };
 

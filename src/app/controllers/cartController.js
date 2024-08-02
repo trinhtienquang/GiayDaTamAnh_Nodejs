@@ -34,6 +34,17 @@ class CartController {
       res.json({ success: false, message: error.message });
     }
   }
+
+  static async updateQuantity(req, res){
+    const userId = req.user.userId;
+    const { sanpham_id, quantity } = req.body;
+    try{
+      await CartModel.updateQuatity(userId, sanpham_id, quantity);
+      res.json({ success: true });
+    } catch (error){
+      res.json({ success: false, message: error.message });
+    }
+  }
 }
 
 module.exports = CartController;
