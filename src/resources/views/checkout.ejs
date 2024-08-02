@@ -79,14 +79,14 @@
                   <ul>
                     <li>
                       <label for="">Giá trị sản phẩm:</label>
-                      <span class="amount">820000</span>
+                      <span class="amount" id="cart-subtotal">820000</span>
                     </li>
                   </ul>
                 </div>
                 <div class="tongtien">
                   <li>
                     <label for="">Tổng tiền</label>
-                    <span class="amount">820000</span>
+                    <span class="amount" id="cart-total">820000</span>
                   </li>
                 </div>
                 <div class="note_checkout">
@@ -106,6 +106,10 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    updateCartCheckoutUI();
+  })
+
+  function updateCartCheckoutUI() {
     if (isUserLoggedIn()) {
       const token = localStorage.getItem('userToken');
       // Người dùng đã đăng nhập, lấy giỏ hàng từ cơ sở dữ liệu
@@ -120,7 +124,7 @@
         .then(data => {
 
           if (data.success) {
-            renderCart(data.cart);
+            renderCartCheckOut(data.cart);
           } else {
             console.error('Error fetching cart from database', data.message);
           }
@@ -130,18 +134,15 @@
         });
     } else {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      renderCart(cart)
+      renderCartCheckOut(cart)
     }
-  })
-
+  }
 
   function isUserLoggedIn() {
-    // console.log(localStorage.getItem('userToken'))
-    // Giả sử bạn có một token hoặc giá trị trong localStorage để kiểm tra trạng thái đăng nhập
     return !!localStorage.getItem('userToken');
   }
 
-  function renderCart(cart) {
+  function renderCartCheckOut(cart) {
     const cartContainer = document.querySelector('#cart-items-body');
     const bottomCart = document.querySelector('.bottom_giohang');
     cartContainer.innerHTML = '';

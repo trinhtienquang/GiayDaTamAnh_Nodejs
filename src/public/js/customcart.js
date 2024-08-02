@@ -245,6 +245,8 @@ function renderCart(cart) {
       if (data.success) {
       console.log('Product removed from cart in database');
       updateCartUI();
+      updateCartCheckoutUI();
+
       } else {
       console.error('Error removing product from cart in database', data.message);
       showToast('error', 'fa-solid fa-circle-exclamation', 'Thất bại', 'Có lỗi xảy ra.')
@@ -259,11 +261,14 @@ function renderCart(cart) {
       cart = cart.filter(item => !(item.sanpham_id === productId && item.sanpham_size === productSize));
       localStorage.setItem('cart', JSON.stringify(cart));
       updateCartUI();
+      updateCartCheckoutUI();
     }
   }
 
   // Cập nhật giao diện giỏ hàng khi tải trang
   updateCartUI();
+  updateCartCheckoutUI();
+
 });
 
 //==========Tăng giảm số lượng sản phẩm==============
@@ -305,3 +310,5 @@ const sizeItems = document.querySelectorAll('#choose-size li');
       this.classList.add('active');
     });
   });
+
+  
