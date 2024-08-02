@@ -2,7 +2,7 @@ const mysqlConnection = require('../../config/db');
 
 const CartModel = {
   getCartByUserId: async (userId) => {
-    const query = 'SELECT * FROM tbl_cart WHERE user_id = ?';
+    const query = "SELECT * FROM tbl_cart WHERE user_id = ? AND status = 'in_cart'";
     return await mysqlConnection.query(query, [userId]);
   },
   

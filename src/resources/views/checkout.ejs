@@ -28,43 +28,7 @@
               <div class="content_scroll_cart">
                 <table>
                   <tbody id="cart-items-body">
-                    <!-- <tr class="cart_item">
-                      <td class="item_card_checkout">
-                        <div class="product-image">
-                          <a href=""><img src="../public/images/giayda/ava-giay-luoi-hoa-tiet-dan-cheo-GNTA1652-N-1.jpg" alt="" class="img-fluid"></a>
-                          <div class="product-remove">
-                            <a href="" class="remove">x</a>
-                          </div>
-                        </div>
-                        <div class="product-detail">
-                          <div class="name">
-                            <a href="">Giày lười da nam đục lỗ caro màu nâu GNTA1652-N</a>
-                            <dl class="variation">
-                              <dt class="variation-size">Size:</dt>
-                              <dd class="variation-size">
-                                <p>39</p>
-                              </dd>
-                              <dt class="variation-thuonghieu">Thương hiệu:</dt>
-                              <dd class="variation-thuonghieu">
-                                <p>Đồ Da Tâm Anh</p>
-                              </dd>
-                            </dl>
-                          </div>
-                          <div class="price_quantity">
-                            <div class="product-quantity">
-                              <span class="btn-minus" onclick="minusHandleClick()">
-                                <i class="ph-minus"></i>
-                              </span>
-                              <input type="text" name="soluong" id="soluong" value="1">
-                              <span class="btn-plus" onclick="plusHandleClick()">
-                                <i class="ph-plus"></i>
-                              </span>
-                            </div>
-                            <div class="product-price">820000₫</div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr> -->
+
                   </tbody>
                 </table>
               </div>
@@ -144,7 +108,6 @@
 
   function renderCartCheckOut(cart) {
     const cartContainer = document.querySelector('#cart-items-body');
-    const bottomCart = document.querySelector('.bottom_giohang');
     cartContainer.innerHTML = '';
 
     let totalAmount = 0; //biến để tính tổng tiền
@@ -152,7 +115,6 @@
     if (cart.length === 0) {
       // Nếu giỏ hàng rỗng, hiển thị thông báo
       cartContainer.innerHTML = '<p>Chưa có sản phẩm trong giỏ hàng.<p>';
-      bottomCart.style.display = 'none'; // Ẩn phần bottom_giohang khi giỏ hàng rỗng
     } else {
       cart.forEach(item => {
         console.log(item)
@@ -209,7 +171,6 @@
 
         cartContainer.appendChild(cartItem);
       });
-      bottomCart.style.display = 'block'; // Hiển thị bottom_giohang khi có sản phẩm trong giỏ hàng
     }
 
     document.querySelector('.shopping_cart_checkout .checkout .amount').innerText = `${totalAmount.toLocaleString('vi-VN')}₫`;
